@@ -2,6 +2,7 @@ package org.devs.heythere_backend.security;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import net.minidev.json.annotate.JsonIgnore;
 import org.devs.heythere_backend.user.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,8 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Getter
 public class UserPrincipal implements UserDetails {
     private final Long id;
@@ -32,11 +35,10 @@ public class UserPrincipal implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserPrincipal create(User user) {
-
-        List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRole().name()))
-                .collect(Collectors.toList());
+    public static UserPrincipal create(final User user) {
+       List<GrantedAuthority> authorities= user.getRoles().stream()
+               .map(role -> new SimpleGrantedAuthority(role.getRole().name()))
+               .collect(Collectors.toList());
 
         return UserPrincipal.builder()
                 .id(user.getId())

@@ -4,10 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.devs.heythere_backend.dto.user.UserRegisterRequestForm;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -19,10 +17,19 @@ public class UserController {
 
     @PostMapping("register")
     public ResponseEntity<?> register(@Valid @RequestBody UserRegisterRequestForm registerRequestForm) {
-
         Long userId = userService.register(registerRequestForm.toUserEntity());
         return new ResponseEntity<>(userId, HttpStatus.CREATED);
     }
 
+    @GetMapping("test")
+    @PreAuthorize("hasRole('USER')")
+    public String test() {
+        return "asdfsaf";
+    }
 
+    @GetMapping("admin")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String admin() {
+        return "admin Page";
+    }
 }

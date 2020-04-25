@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,22 +30,10 @@ public class UserService {
 
     @Transactional
     public Long register( final User user) {
-        return userRepository.save(
-                grantDefaultUserRoleAndEncodePassword(user)
-        ).getId();
-    }
-
-    private User grantDefaultUserRoleAndEncodePassword(final User user) {
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findByRole(RoleType.ROLE_USER));
-
-        return User.builder()
-                .username(user.getUsername())
-                .name(user.getName())
-                .email(user.getEmail())
-                .picture(user.getPicture())
-                .password(passwordEncoder.encode(user.getPassword()))
-                .roles(roles).build();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Role userRole = roleRepository.findByRole(RoleName.ROLE_USER);
+        user.setRoles(Collections.singleton(userRole));
+        return userRepository.save(user).getId();
     }
 
 }

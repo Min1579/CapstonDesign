@@ -16,6 +16,6 @@ public class Role {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private RoleType role;
+    private RoleName role;
 
 }

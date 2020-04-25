@@ -1,11 +1,10 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navigation from './components/Navigation';
+import Test from "./test/Test";
 
 const App = () => {
     return (
         <div>
-            <Navigation />
+            <Test />
         </div>
     );
 };

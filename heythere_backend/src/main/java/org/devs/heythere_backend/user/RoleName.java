@@ -1,5 +1,5 @@
 package org.devs.heythere_backend.user;
 
-public enum RoleType {
+public enum RoleName {
     ROLE_USER, ROLE_ADMIN, ROLE_NO_PERMISSION
 }
