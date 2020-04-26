@@ -4,9 +4,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.devs.heythere_backend.board.Board;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -33,6 +36,10 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+
+    @OneToMany(mappedBy = "user")
+    private List<Board> boards = new ArrayList<>();
 
     @Builder
     public User(Long id, String username, String name, String email, String password, String picture, Set<Role> roles) {

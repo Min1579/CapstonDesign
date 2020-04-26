@@ -21,15 +21,10 @@ public class UserController {
         return new ResponseEntity<>(userId, HttpStatus.CREATED);
     }
 
-    @GetMapping("test")
-    @PreAuthorize("hasRole('USER')")
-    public String test() {
-        return "asdfsaf";
-    }
 
-    @GetMapping("admin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String admin() {
-        return "admin Page";
+    @PostMapping("mypage")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> uploadProfilePicture() {
+        return ResponseEntity.ok("aa");
     }
 }

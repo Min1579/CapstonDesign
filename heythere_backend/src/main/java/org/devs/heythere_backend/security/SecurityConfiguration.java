@@ -1,8 +1,8 @@
 package org.devs.heythere_backend.security;
 
 import lombok.RequiredArgsConstructor;
-import org.devs.heythere_backend.security.jwt.JwtAuthenticationEntryPoint;
-import org.devs.heythere_backend.security.jwt.JwtAuthenticationFilter;
+import org.devs.heythere_backend.jwt.JwtAuthenticationEntryPoint;
+import org.devs.heythere_backend.jwt.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

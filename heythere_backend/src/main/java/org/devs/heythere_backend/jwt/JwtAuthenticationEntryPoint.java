@@ -1,4 +1,4 @@
-package org.devs.heythere_backend.security.jwt;
+package org.devs.heythere_backend.jwt;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
