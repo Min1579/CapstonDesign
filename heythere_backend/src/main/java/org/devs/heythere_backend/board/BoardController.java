@@ -22,29 +22,29 @@ public class BoardController {
         return new ResponseEntity<>(writeBoardId, HttpStatus.CREATED);
     }
 
-    @PutMapping("{boardId}/edit")
+    @PutMapping("{boardId}")
     public ResponseEntity<BoardEditResponseDto> editBoard(@PathVariable Long boardId,
                                                           @RequestBody BoardEditForm form){
         BoardEditResponseDto responseDto = boardService.editBoardContent(boardId,form);
         return new ResponseEntity<>(responseDto,HttpStatus.OK);
     }
-    @DeleteMapping("{boardId}/delete")
+    @DeleteMapping("{boardId}")
     public ResponseEntity<Long> deleteBoard(@PathVariable Long boardId){
         return new ResponseEntity<>(boardService.deleteBoard(boardId),HttpStatus.ACCEPTED);
     }
-    @PostMapping("{boardId}/write-comment")
+    @PostMapping("{boardId}/comment")
     public ResponseEntity<Long> writeComment(@PathVariable Long boardId,
                                              @RequestBody CommentWriteForm form){
         Long writeCommentId = commentService.writeComment(boardId, form.toCommentEntity());
         return new ResponseEntity<>(writeCommentId,HttpStatus.CREATED);
     }
-    @PutMapping("{boardId}/edit-comment/{commentId}")
+    @PutMapping("{boardId}/comment/{commentId}")
     public ResponseEntity<CommentEditResponseDto> editComment(@PathVariable Long commentId,
                                                               @RequestBody CommentEditForm form){
         CommentEditResponseDto responseDto = commentService.editComment(commentId,form);
         return new ResponseEntity<>(responseDto,HttpStatus.OK);
     }
-    @DeleteMapping("{boardId}/delete-comment/{commentId}")
+    @DeleteMapping("{boardId}/comment/{commentId}")
     public ResponseEntity<Long> deleteComment(@PathVariable Long commentId){
         return new ResponseEntity<>(commentService.deleteComment(commentId),HttpStatus.ACCEPTED);
     }
