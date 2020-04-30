@@ -1,6 +1,8 @@
 package org.devs.heythere_backend.board;
 
 import lombok.RequiredArgsConstructor;
+import org.devs.heythere_backend.board.comment.CommentEditForm;
+import org.devs.heythere_backend.board.comment.CommentEditResponseDto;
 import org.devs.heythere_backend.board.comment.CommentService;
 import org.devs.heythere_backend.board.comment.CommentWriteForm;
 import org.springframework.http.HttpStatus;
@@ -35,5 +37,15 @@ public class BoardController {
                                              @RequestBody CommentWriteForm form){
         Long writeCommentId = commentService.writeComment(boardId, form.toCommentEntity());
         return new ResponseEntity<>(writeCommentId,HttpStatus.CREATED);
+    }
+    @PutMapping("{boardId}/edit-comment/{commentId}")
+    public ResponseEntity<CommentEditResponseDto> editComment(@PathVariable Long commentId,
+                                                              @RequestBody CommentEditForm form){
+        CommentEditResponseDto responseDto = commentService.editComment(commentId,form);
+        return new ResponseEntity<>(responseDto,HttpStatus.OK);
+    }
+    @DeleteMapping("{boardId}/delete-comment/{commentId}")
+    public ResponseEntity<Long> deleteComment(@PathVariable Long commentId){
+        return new ResponseEntity<>(commentService.deleteComment(commentId),HttpStatus.ACCEPTED);
     }
 }
