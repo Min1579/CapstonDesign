@@ -1,6 +1,8 @@
 package org.devs.heythere_backend.jwt;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.devs.heythere_backend.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,11 @@ import java.io.IOException;
 
 @Slf4j
 @NoArgsConstructor
+@AllArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    @Autowired private JwtTokenProvider jwtTokenProvider;
-    @Autowired private CustomUserDetailsService customUserDetailsService;
+    private JwtTokenProvider jwtTokenProvider;
+    private CustomUserDetailsService customUserDetailsService;
 
 
     @Override

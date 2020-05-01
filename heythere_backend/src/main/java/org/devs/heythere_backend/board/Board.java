@@ -20,10 +20,8 @@ public class Board{
     @Column(name = "board_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    @Column(name = "board_owner")
-    private User boardOwner;
+    @Column(name = "board_owner_id")
+    private Long boardOwnerId;
 
     @NotBlank
     private String title;
@@ -44,11 +42,11 @@ public class Board{
     private List<Comment> comments = new ArrayList<>();
 
     @Builder
-    public Board(Long id, User boardOwner, String title, String writer,
+    public Board(Long id, Long boardOwnerId, String title, String writer,
                  String content, int view, User user,
                  List<Comment> comments) {
         this.id = id;
-        this.boardOwner = boardOwner;
+        this.boardOwnerId = boardOwnerId;
         this.title = title;
         this.writer = writer;
         this.content = content;

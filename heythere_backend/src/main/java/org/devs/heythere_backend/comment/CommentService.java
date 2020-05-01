@@ -15,9 +15,9 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Service
 public class CommentService {
-    final UserRepository userRepository;
-    final BoardRepository boardRepository;
-    final CommentRepository commentRepository;
+    private final UserRepository userRepository;
+    private final BoardRepository boardRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional
     public Long registerComment(final Long userId, final Long boardId, final String reply){

@@ -55,11 +55,8 @@ public class BoardService {
         final User writer = userRepository.findById(userId)
                 .orElseThrow(() -> new UsernameNotFoundException("USER NOT FOUND ID : " + userId));
 
-        final User boardOwnerUser = userRepository.findById(boardOwnerId)
-                .orElseThrow(() -> new UsernameNotFoundException("USER NOT FOUND ID : " + boardOwnerId));
-
         final Board board = Board.builder()
-                .boardOwner(boardOwnerUser)
+                .boardOwnerId(boardOwnerId)
                 .title(boardRegisterRegisterFormDto.getTitle())
                 .content(boardRegisterRegisterFormDto.getTitle())
                 .user(writer)
