@@ -1,4 +1,4 @@
-package org.devs.heythere_backend.board.comment;
+package org.devs.heythere_backend.comment;
 
 import lombok.Builder;
 import lombok.Getter;

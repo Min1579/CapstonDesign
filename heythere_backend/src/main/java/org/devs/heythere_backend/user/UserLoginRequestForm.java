@@ -1,4 +1,4 @@
-package org.devs.heythere_backend.dto.user;
+package org.devs.heythere_backend.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,6 @@
 package org.devs.heythere_backend.user;
 
 import lombok.RequiredArgsConstructor;
-import org.devs.heythere_backend.dto.user.UserRegisterRequestForm;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,6 +24,6 @@ public class UserController {
     @PostMapping("mypage")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> uploadProfilePicture() {
-        return ResponseEntity.ok("aa");
+        return ResponseEntity.ok("mypage will implement soon!");
     }
 }

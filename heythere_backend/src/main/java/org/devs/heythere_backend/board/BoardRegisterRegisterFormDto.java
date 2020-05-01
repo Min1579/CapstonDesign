@@ -1,13 +1,18 @@
 package org.devs.heythere_backend.board;
 
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public class BoardWriteForm {
+@Setter @Getter
+@NoArgsConstructor
+public class BoardRegisterRegisterFormDto {
     private String title;
     private String content;
 
     @Builder
-    public BoardWriteForm(String title, String content) {
+    public BoardRegisterRegisterFormDto(String title, String content) {
         this.title = title;
         this.content = content;
     }

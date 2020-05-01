@@ -1,8 +1,8 @@
 package org.devs.heythere_backend.security;
 
 import lombok.RequiredArgsConstructor;
-import org.devs.heythere_backend.dto.user.JwtAuthenticationResponse;
-import org.devs.heythere_backend.dto.user.UserLoginRequestForm;
+import org.devs.heythere_backend.jwt.JwtAuthenticationResponse;
+import org.devs.heythere_backend.user.UserLoginRequestForm;
 import org.devs.heythere_backend.jwt.JwtTokenProvider;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,10 +1,11 @@
-package org.devs.heythere_backend.board.comment;
+package org.devs.heythere_backend.comment;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.devs.heythere_backend.board.Board;
+import org.devs.heythere_backend.user.User;
 
 import javax.persistence.*;
 
@@ -23,15 +24,25 @@ public class Comment {
     private String comment;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
     @JoinColumn(name = "board_id")
     private Board board;
 
+    public void setTargetBoard(final Board board) {
+        this.board = board;
+        board.getComments().add(this);
+    }
+
     @Builder
-    public Comment(Long id, String writer, String comment, Board board) {
+    public Comment(Long id, String writer, String comment, Board board, User user) {
         this.id = id;
         this.writer = writer;
         this.comment = comment;
         this.board = board;
+        this.user = user;
     }
 }
 
