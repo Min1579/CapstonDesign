@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3fd5489-f5fe-4483-b6d4-154faadf60db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Broadcast.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/RecommendList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/VideoList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Broadcast.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Broadcast.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -79,7 +74,7 @@
       <workItem from="1587811885478" duration="7569000" />
       <workItem from="1588090307848" duration="170000" />
       <workItem from="1588312981789" duration="14000" />
-      <workItem from="1589258395501" duration="4997000" />
+      <workItem from="1589258395501" duration="10855000" />
     </task>
     <servers />
   </component>
