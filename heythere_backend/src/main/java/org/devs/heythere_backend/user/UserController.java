@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -20,10 +21,18 @@ public class UserController {
         return new ResponseEntity<>(userId, HttpStatus.CREATED);
     }
 
+    @GetMapping("search/{usernameOrNameOrEmail}")
+    public ResponseEntity<?> searchByUsernameOrNameOrEmail(@PathVariable String usernameOrNameOrEmail){
+        List<UserResearchFoundResponseDto> users = userService.searchByUsernameOrNameOrEmail(usernameOrNameOrEmail);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
 
     @PostMapping("mypage")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> uploadProfilePicture() {
         return ResponseEntity.ok("mypage will implement soon!");
     }
+
+
+
 }
