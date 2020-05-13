@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import {
-    Card, Button
+    Card, Button, Col
 } from 'react-bootstrap'
+import {Link, Route} from 'react-router-dom';
+import BoardMain from "../board/BoardMain";
 
-const SearchList = ({input}) => {
+const SearchList = ({input, goToBoardById}) => {
     const [results, setResult] = useState([]);
 
     useEffect(() => {
@@ -13,24 +15,28 @@ const SearchList = ({input}) => {
                 console.log(res.data);
                 setResult(res.data);
             }).catch((err) => console.log(err));
-    },[]);
+    },[input]);
 
     return results.map((res) => {
         return (
-        <Card maxWidth={320}
-              maxHeight={180}
-              alt="320x180" Inline >
-            <Card.Img variant="top" src="http://placehold.it/130x80" />
-            <Card.Body>
-                <Card.Title>{res.name}</Card.Title>
-                <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
-                </Card.Text>
-                <Button variant="primary">게시판</Button>
-                <Button variant="primary">방송 보러가기</Button>
-            </Card.Body>
-        </Card>
+            <div>
+                <Card maxWidth={320} maxHeight={180} alt="320x180" Inline >
+                    <Card.Img variant="top" src="http://placehold.it/130x80" />
+                    <Card.Body>
+                        <Card.Title>{res.name}</Card.Title>
+                        <Card.Text>
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        </Card.Text>
+                        <Button variant="primary" onClick={()=>
+                            goToBoardById(res.id)
+                        }><Link to="/board">게시판으로 이동</Link></Button>
+                        <Button variant="primary">방송가기</Button>
+                    </Card.Body>
+                </Card>
+                <Route path="/board"
+                       exact
+                       render={() => <BoardMain boardId={res.id} />}/>
+            </div>
         )
     })
 };

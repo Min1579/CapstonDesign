@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3fd5489-f5fe-4483-b6d4-154faadf60db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserMypageResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/Login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/Mypage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/Register.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/main/CarouselMain.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/main/Main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/search/SearchList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/jwt/JwtAuthenticationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/jwt/JwtAuthenticationResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/security/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/security/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/board/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/board/BoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/board/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/board/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserResearchFoundResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserResearchFoundResponseDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RecommendList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RecommendList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/VideoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/main/VideoList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/board/BoardMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/board/BoardMain.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/search/SearchList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/search/SearchList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -52,6 +47,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -98,7 +94,7 @@
       <workItem from="1589351706498" duration="6141000" />
       <workItem from="1589358109991" duration="23000" />
       <workItem from="1589358508574" duration="483000" />
-      <workItem from="1589359010380" duration="8158000" />
+      <workItem from="1589359010380" duration="13094000" />
     </task>
     <servers />
   </component>

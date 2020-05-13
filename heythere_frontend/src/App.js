@@ -1,5 +1,6 @@
 import React, { useState, useReducer } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { createHashHistory } from "history";
 import {
     Navbar,
     Nav,
@@ -11,25 +12,36 @@ import {
     Row,
     Col, CardGroup,
 } from 'react-bootstrap'
-import {Link, Route} from 'react-router-dom';
+import {Link, Route, Redirect} from 'react-router-dom';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register'
 import Mypage from './components/auth/Mypage'
 import Main from './components/main/Main'
+import BoardMain from "./components/board/BoardMain";
 import RecommendList from "./components/RecommendList";
 import SearchList from "./components/search/SearchList";
 
 
 const App = () => {
+    const history = createHashHistory();
+
     const [currentUser, setCurrentUser] = useState(null);
     const [valid, setValid] = useState(false);
     const [input, setInput] = useState("");
 
+    const [boardId, setBoardId] = useState(-1);
+
     const onSearchHandler = (e) => {
+        e.preventDefault();
         const input = e.target.value;
         console.log(input)
         setInput(input);
     };
+
+    const goToBoardById = (boardId) => {
+        setBoardId(boardId);
+        console.log(`in App.js board id  id ${boardId}`);
+    }
 
     {/*  Auth */}
     const setAuthVerifiedUser = (user) => {
@@ -94,22 +106,21 @@ const App = () => {
                     <Col sm={2}>
                         <RecommendList />
                     </Col>
-
-
                     <Col sm={10} fluid>
-
-
-
                         <Route path="/"
                                exact
                                render={() =>
                                     <Main />} />
+                        <Route path="/board"
+                               exact
+                               render={() => <BoardMain boardId={boardId} />}/>
+
 
                         <Route path="/search"
                                exact
                                render={() =>
                                    <CardGroup>
-                                       <SearchList input={input} />
+                                       <SearchList input={input}  goToBoardById={goToBoardById}/>
                                    </CardGroup>
                                } />
 

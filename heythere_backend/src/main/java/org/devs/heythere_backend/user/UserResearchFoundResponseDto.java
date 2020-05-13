@@ -22,6 +22,4 @@ public class UserResearchFoundResponseDto {
         this.email = email;
         this.picture = picture;
     }
-
-
 }
