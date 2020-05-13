@@ -1,213 +1,128 @@
-import React, { useState, useReducer } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {Navbar, Nav, Form, FormControl, Button, Row, Col, Table, Image, Figure, DropdownButton, Dropdown, Modal} from "react-bootstrap";
-import {Link, Route} from "react-router-dom";
+import React, { useState, useReducer } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import {
+    Navbar,
+    Nav,
+    Form,
+    Button,
+    FormControl,
+    DropdownButton,
+    Dropdown,
+    Row,
+    Col, CardGroup,
+} from 'react-bootstrap'
+import {Link, Route} from 'react-router-dom';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register'
+import Mypage from './components/auth/Mypage'
+import Main from './components/main/Main'
 import RecommendList from "./components/RecommendList";
-import VideoList from "./components/VideoList";
-import axios from "axios";
+import SearchList from "./components/search/SearchList";
 
-
-
-
-
-const loginUserReducer = (loginUserState, action) => {
-    return {
-        ...loginUserState,
-        [action.name] : action.value,
-    }
-}
-
-function Login() {
-    const [loginUserState, dispatch] = useReducer(loginUserReducer, {
-        usernameOrEmail:'',
-        password:'',
-    });
-
-
-    const {usernameOrEmail, password} = loginUserState;
-
-    const handleSubmit = () => {
-        axios.post("http://172.30.1.28:8080/api/auth/signin", loginUserState
-            ).then((res) => {
-                console.log(res.data);
-            }).catch((err) => {
-            console.log(err);
-        });
-        setShow(false);
-    }
-
-    const onChange = e => {
-        dispatch(e.target);
-    }
-
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    return (
-        <div>
-            <Button variant="light" onClick={handleShow}>
-                Login
-            </Button>
-
-            <Modal show={show} onHide={handleClose} animation={false}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="formBasicUsername">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control type="text" name="usernameOrEmail" value={usernameOrEmail} onChange={onChange} placeholder="Enter email" />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" name="password" value={password} onChange={onChange}  placeholder="Password" />
-                        </Form.Group>
-
-                        <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                        </Form.Text>
-                    </Form>
-
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleSubmit}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
-    );
-}
-
-const registerUserReducer = (registerUserState, action) => {
-    return {
-        ...registerUserState,
-        [action.name]: action.value,
-    }
-}
-
-function Register() {
-    const [registerState, dispatch] = useReducer(registerUserReducer, {
-        username:'',
-        name :'',
-        email:'',
-        password:''
-    });
-    const {username, name, email, password} = registerState;
-
-    const handleSubmit = () => {
-        axios.post("http://172.30.1.28:8080/user/register", registerState)
-            .then((res) => {
-                console.log(res.data);
-            }).catch((err) => {
-            console.log(err);
-        });
-        setShow(false);
-    }
-
-    const handleClose = () => {
-        setShow(false);
-    }
-
-    const onChange = e => {
-        dispatch(e.target);
-    }
-    const [show, setShow] = useState(false);
-    const handleShow = () => setShow(true);
-    return (
-        <div>
-            <Button variant="light" onClick={handleShow}>
-                Register
-            </Button>
-
-            <Modal show={show} onHide={handleClose} animation={false}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Register</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="formBasicUsername">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control type="text" name="username" value={username} onChange={onChange} placeholder="Enter email" />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicName">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" name="name" value={name} onChange={onChange}  placeholder="Enter Name" />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" name="email" value={email} onChange={onChange}  placeholder="Enter Email" />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" name="password" value={password} onChange={onChange}  placeholder="Password" />
-                        </Form.Group>
-
-                        <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                        </Form.Text>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleSubmit}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
-    );
-}
 
 const App = () => {
+    const [currentUser, setCurrentUser] = useState(null);
+    const [valid, setValid] = useState(false);
+    const [input, setInput] = useState("");
+
+    const onSearchHandler = (e) => {
+        const input = e.target.value;
+        console.log(input)
+        setInput(input);
+    };
+
+    {/*  Auth */}
+    const setAuthVerifiedUser = (user) => {
+        console.log(`in App.js : user -> ${user}`);
+        setCurrentUser(user);
+        setValid(true);
+    }
+
 
     return (
         <div>
             <div>
-                <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand href="#home">HeyThere</Navbar.Brand>
-                    <Nav className="mr-auto">
-                        <Nav.Link href="#home">탐색</Nav.Link>
-                        <Nav.Link href="#">###</Nav.Link>
-                        <Nav.Link href="#">###</Nav.Link>
+                <Navbar bg='dark' variant='dark'>
+                    <Navbar.Brand><Link to="/">HeyThere</Link></Navbar.Brand>
+                    <Nav className='mr-auto'>
+                        <Nav.Link href='#home'>탐색</Nav.Link>
+                        <Nav.Link href='#'>###</Nav.Link>
+                        <Nav.Link href='#'>###</Nav.Link>
                     </Nav>
                     <Form inline alignCenter>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-info">Search</Button>
+                        <FormControl type='text' placeholder='Search' className='mr-sm-2' onChange={onSearchHandler}/>
+                        <Button variant="outline-info"><Link to="/search">Search</Link></Button>
                     </Form>
 
                     <DropdownButton
                         alignRight
-                        title=""
-                        id="dropdown-menu-align-right"
-                        variant="outline-info"
+                        title=''
+                        id='dropdown-menu-align-right'
+                        variant='outline-info'
                     >
-                        <Dropdown.Item eventKey="1" ><Login /></Dropdown.Item>
-                        <Dropdown.Item eventKey="2"><Register /></Dropdown.Item>
-                        <Dropdown.Item eventKey="3">MyPage</Dropdown.Item>
+                        {valid === false ? (
+                            <div>
+                                <Dropdown.Item eventKey='1'>
+                                    <Login setCurrentUser={setAuthVerifiedUser}/>
+                                </Dropdown.Item>
+                                <Dropdown.Item eventKey='2'>
+                                    <Register />
+                                </Dropdown.Item>
+                            </div>
+                        ) : (
+                            <div>
+                                <Dropdown.Item eventKey='1'><Link to="/mypage">Mypage</Link></Dropdown.Item>
+                                <Dropdown.Item
+                                    eventKey='2'
+                                    onClick={() => {
+                                        setCurrentUser(null);
+                                        console.log(`logout successful!`)
+                                    }}
+                                >
+                                    Logout
+                                </Dropdown.Item>
+                                <Dropdown.Item eventKey='3'><Link to="/">방송하기</Link></Dropdown.Item>
+                                <Dropdown.Item eventKey='4'><Link to="/">동영상업로드</Link></Dropdown.Item>
+                            </div>
+                        )}
                         <Dropdown.Divider />
                     </DropdownButton>
                 </Navbar>
+            </div>
+            <div>
                 <Row>
                     <Col sm={2}>
-                        <RecommendList/>
+                        <RecommendList />
                     </Col>
+
+
                     <Col sm={10} fluid>
-                        <VideoList/>
+
+
+
+                        <Route path="/"
+                               exact
+                               render={() =>
+                                    <Main />} />
+
+                        <Route path="/search"
+                               exact
+                               render={() =>
+                                   <CardGroup>
+                                       <SearchList input={input} />
+                                   </CardGroup>
+                               } />
+
+                        <Route path="/mypage"
+                               exact
+                               render={() =>
+                                   <Mypage currentUser={currentUser} />}
+                        />
                     </Col>
                 </Row>
             </div>
         </div>
+    )
+}
 
-
-    );
-};
-
-export default App;
+export default App

@@ -1,7 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Navbar, Nav, Form, FormControl, Button, Row, Col, Table, Image, Figure} from "react-bootstrap";
-import {Link, Route} from "react-router-dom";
+import { Table, Image} from "react-bootstrap";
 
 const RecommendList = () => {
     return (

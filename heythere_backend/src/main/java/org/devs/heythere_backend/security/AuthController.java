@@ -49,6 +49,7 @@ public class AuthController {
                 .username(loginUser.getUsername())
                 .name(loginUser.getName())
                 .email(loginUser.getEmail())
+                .picture(loginUser.getPicture())
                 .accessToken(token)
                 .build();
 

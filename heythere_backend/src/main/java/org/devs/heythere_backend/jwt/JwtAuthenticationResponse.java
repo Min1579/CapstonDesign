@@ -14,6 +14,7 @@ public class JwtAuthenticationResponse {
     private final String username;
     private final String name;
     private final String email;
+    private final String picture;
     private static final String TOKEN_TYPE = "Bearer";
     private final String accessToken;
 }
