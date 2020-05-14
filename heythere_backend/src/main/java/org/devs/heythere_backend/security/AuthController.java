@@ -1,6 +1,7 @@
 package org.devs.heythere_backend.security;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.devs.heythere_backend.jwt.JwtAuthenticationResponse;
 import org.devs.heythere_backend.user.User;
 import org.devs.heythere_backend.user.UserLoginRequestForm;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/auth")
@@ -45,13 +47,13 @@ public class AuthController {
         );
 
         final JwtAuthenticationResponse response = JwtAuthenticationResponse.builder()
-                .userId(userId)
+                .userId(String.valueOf(userId))
                 .username(loginUser.getUsername())
                 .name(loginUser.getName())
                 .email(loginUser.getEmail())
                 .accessToken(token)
                 .build();
-
+        log.info("auth user : {} " , response);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
