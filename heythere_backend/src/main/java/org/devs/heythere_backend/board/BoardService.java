@@ -19,8 +19,8 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public List<BoardResponseDto> getAllBoardByBoardOwnerId(final Long boardOwnerId) {
-        return boardRepository.getAllByBoardOwnerId(boardOwnerId).stream()
+    public List<BoardResponseDto> getAllBoardsByBoardId(final Long boardId) {
+        return boardRepository.getAllByBoardOwnerId(boardId).stream()
                 .map(board -> {
                     return BoardResponseDto.builder()
                             .id(board.getId())

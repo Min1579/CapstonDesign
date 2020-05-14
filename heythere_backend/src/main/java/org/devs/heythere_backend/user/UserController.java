@@ -1,6 +1,7 @@
 package org.devs.heythere_backend.user;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("user")
@@ -27,12 +29,11 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping("mypage")
+    @PostMapping("mypage/{userId}")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> uploadProfilePicture() {
-        return ResponseEntity.ok("mypage will implement soon!");
+    public ResponseEntity<UserMypageResponseDto> findUserByIdAndSendToMypage(@PathVariable("userId") final Long userId) {
+        final UserMypageResponseDto response = userService.findUserByIdAndSendToMypage(userId);
+        log.info("mypage");
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
-
-
 }

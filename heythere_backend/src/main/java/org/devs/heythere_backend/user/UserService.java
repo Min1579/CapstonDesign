@@ -2,6 +2,7 @@ package org.devs.heythere_backend.user;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,20 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+
+    @Transactional
+    public UserMypageResponseDto findUserByIdAndSendToMypage(final Long userId) {
+        final User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("USER ID NOT FOUND"));
+
+        return UserMypageResponseDto.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .name(user.getName())
+                .picture(user.getPicture())
+                .email(user.getEmail())
+                .build();
+    }
 
     @Transactional
     public boolean existByUsername(final String username) {

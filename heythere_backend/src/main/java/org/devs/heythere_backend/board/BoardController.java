@@ -17,20 +17,20 @@ import java.util.Map;
 public class BoardController {
     private final BoardService boardService;
 
-    @GetMapping("{boardOwnerId}")
-    public ResponseEntity<List<BoardResponseDto>> getAllBoardByBoardOwnerId(@PathVariable("boardOwnerId") Long boardOwnerId) {
-        final List<BoardResponseDto> boardsByBoardOwnerId =  boardService.getAllBoardByBoardOwnerId(boardOwnerId);
-        return new ResponseEntity<>(boardsByBoardOwnerId, HttpStatus.OK);
+    @GetMapping("main/{boardId}")
+    public ResponseEntity<List<BoardResponseDto>> getAllBoardByBoardId(@PathVariable("boardId") final Long boardId) {
+        final List<BoardResponseDto> allBoardsByBoardId =  boardService.getAllBoardsByBoardId(boardId);
+        return new ResponseEntity<>(allBoardsByBoardId, HttpStatus.OK);
     }
 
     @GetMapping("{boardId}")
-    public ResponseEntity<BoardResponseDto> getBoardById(@PathVariable("boardId") Long boardId) {
+    public ResponseEntity<BoardResponseDto> getBoardById(@PathVariable("boardId") final Long boardId) {
         final BoardResponseDto board = boardService.getBoardById(boardId);
         return new ResponseEntity<>(board, HttpStatus.OK);
     }
 
     @PostMapping("{boardOwnerId}/register/{userId}")
-    public ResponseEntity<Long> registerBoard(@PathVariable("boardOwnerId") Long boardOwnerId,
+    public ResponseEntity<Long> registerBoard(@PathVariable("boardOwnerId") final Long boardOwnerId,
                                               @PathVariable("userId") Long userId,
                                               @RequestBody @Valid BoardRegisterRegisterFormDto boardRegisterRegisterFormDto){
         final Long writeBoardId = boardService.registerBoard(userId, boardOwnerId, boardRegisterRegisterFormDto);
@@ -38,7 +38,7 @@ public class BoardController {
     }
 
     @PutMapping("update/{boardId}")
-    public ResponseEntity<BoardModifyResponseDto> modifyBoard(@PathVariable Long boardId,
+    public ResponseEntity<BoardModifyResponseDto> modifyBoard(@PathVariable final Long boardId,
                                                               Map<String, String> content){
         final BoardModifyResponseDto modifyResponseDto = boardService.updateBoard(boardId, content);
         return new ResponseEntity<>(modifyResponseDto, HttpStatus.OK);

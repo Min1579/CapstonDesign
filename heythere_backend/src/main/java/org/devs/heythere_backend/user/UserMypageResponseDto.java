@@ -5,21 +5,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter
+@Setter @Getter
 @NoArgsConstructor
-public class UserResearchFoundResponseDto {
+public class UserMypageResponseDto {
     private Long id;
     private String username;
     private String name;
     private String email;
+    private String password;
     private String picture;
 
     @Builder
-    public UserResearchFoundResponseDto(Long id, String username, String name, String email, String picture){
+    public UserMypageResponseDto(Long id, String username, String name, String email, String password, String picture) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.email = email;
+        this.password = password;
         this.picture = picture;
     }
 }
