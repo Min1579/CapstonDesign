@@ -21,7 +21,7 @@ public class UserController {
         return new ResponseEntity<>(userId, HttpStatus.CREATED);
     }
 
-    @PostMapping("search/{usernameOrNameOrEmail}")
+    @PostMapping("search/{usernameOrNameOrEmail}"
     public ResponseEntity<?> searchByUsernameOrNameOrEmail(@PathVariable String usernameOrNameOrEmail){
         List<UserResearchFoundResponseDto> users = userService.searchByUsernameOrNameOrEmail(usernameOrNameOrEmail);
         return new ResponseEntity<>(users, HttpStatus.OK);
