@@ -38,7 +38,7 @@ const Mypage = ({currentUser}) => {
                     </Form.Group>
                     <Form.Group controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="passowrd"  placeholder="Passowrd" />
+                        <Form.Control type="passoword"  placeholder="Passowrd" />
                     </Form.Group>
 
                 </Form>

@@ -49,6 +49,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByRole(RoleName.ROLE_USER);
         user.setRoles(Collections.singleton(userRole));
+        user.setStatus(UserStatus.OFF);
         return userRepository.save(user).getId();
     }
 

@@ -6,6 +6,7 @@ import org.devs.heythere_backend.user.User;
 import org.devs.heythere_backend.user.UserLoginRequestForm;
 import org.devs.heythere_backend.jwt.JwtTokenProvider;
 import org.devs.heythere_backend.user.UserRepository;
+import org.devs.heythere_backend.user.UserStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,9 +41,11 @@ public class AuthController {
 
         final String token = tokenProvider.generateToken(authentication);
         Long userId = tokenProvider.getUserIdFromJwt(token);
-        final User loginUser = userRepository.findById(userId).orElseThrow(
-                () -> new UsernameNotFoundException("USER NOT FOUND")
+        final User loginUser = userRepository.findById(userId)
+                .orElseThrow(
+                        () -> new UsernameNotFoundException("USER NOT FOUND")
         );
+        loginUser.updateStatus(UserStatus.ON);
 
         final JwtAuthenticationResponse response = JwtAuthenticationResponse.builder()
                 .userId(userId)

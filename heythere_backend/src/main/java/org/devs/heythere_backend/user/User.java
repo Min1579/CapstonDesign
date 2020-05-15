@@ -30,12 +30,14 @@ public class User {
     private String password;
     private String picture;
 
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Board> boards = new ArrayList<>();
@@ -51,5 +53,8 @@ public class User {
         this.roles = roles;
     }
 
+    public void updateStatus(final UserStatus status) {
+        this.status = status;
+    }
 
 }
