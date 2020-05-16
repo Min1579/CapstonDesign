@@ -7,9 +7,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.naming.NameNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -67,6 +69,12 @@ public class UserService {
                         .build())
                 .collect(Collectors.toList());
 //        return userRepository.findByUsernameOrEmail(usernameOrNameOrEmail,usernameOrNameOrEmail);
+    }
+    @Transactional
+    public Long editProfile(final Long userId, final UserProfileEditForm form) throws NameNotFoundException {
+        return userRepository.findById(userId)
+                .orElseThrow(NameNotFoundException::new)
+                .editPicture(form.getPicture());
     }
 
 }

@@ -51,5 +51,11 @@ public class User {
         this.roles = roles;
     }
 
+    public Long editPicture(String picture){
+        if (!picture.equals(""))
+            this.picture = picture;
+        return this.id;
+    }
+
 
 }

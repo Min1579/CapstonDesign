@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.NameNotFoundException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -29,11 +30,19 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping("mypage/{userId}")
+    @PostMapping("mypage/{serId}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<UserMypageResponseDto> findUserByIdAndSendToMypage(@PathVariable("userId") final Long userId) {
         final UserMypageResponseDto response = userService.findUserByIdAndSendToMypage(userId);
         log.info("mypage");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PutMapping("mypage/{serId}/edit-profile")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> editPicture(@PathVariable final Long serId, @RequestBody final UserProfileEditForm form) throws NameNotFoundException {
+        final Long userEditId = userService.editProfile(serId, form);
+        return new ResponseEntity<>(userEditId, HttpStatus.OK);
+    }
+
 }

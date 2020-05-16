@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3fd5489-f5fe-4483-b6d4-154faadf60db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/board/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/board/BoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/board/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/board/BoardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserResearchFoundResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserResearchFoundResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/config/WebConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/config/WebConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/board/BoardMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/board/BoardMain.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/search/SearchList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/search/SearchList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/Mypage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Mypage.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,6 +94,8 @@
       <workItem from="1589358109991" duration="23000" />
       <workItem from="1589358508574" duration="483000" />
       <workItem from="1589359010380" duration="13094000" />
+      <workItem from="1589449780384" duration="2627000" />
+      <workItem from="1589519136226" duration="17000" />
     </task>
     <servers />
   </component>
