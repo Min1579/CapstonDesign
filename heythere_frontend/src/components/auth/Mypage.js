@@ -38,7 +38,11 @@ const Mypage = ({currentUser}) => {
                     </Form.Group>
                     <Form.Group controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
+<<<<<<< HEAD
                         <Form.Control type="password"  placeholder="Password" />
+=======
+                        <Form.Control type="passoword"  placeholder="Passowrd" />
+>>>>>>> 47a44e93fe15c8e22906975ff0312d73e5578fcb
                     </Form.Group>
 
                 </Form>

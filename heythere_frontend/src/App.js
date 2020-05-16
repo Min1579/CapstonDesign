@@ -21,7 +21,6 @@ import BoardMain from "./components/board/BoardMain";
 import RecommendList from "./components/RecommendList";
 import SearchList from "./components/search/SearchList";
 
-
 const App = () => {
     const history = createHashHistory();
 

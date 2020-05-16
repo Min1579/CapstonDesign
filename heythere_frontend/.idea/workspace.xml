@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3fd5489-f5fe-4483-b6d4-154faadf60db" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/../heythere_backend/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../heythere_backend/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/config/WebConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/config/WebConfiguration.java" afterDir="false" />
@@ -10,6 +11,23 @@
       <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/auth/Mypage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Mypage.js" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/system/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/system/SystemService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/system/UserStatusOnUserListResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/system/UserStatusStreamingOnUserResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/security/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/security/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/security/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../heythere_backend/src/main/java/org/devs/heythere_backend/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RecommendList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RecommendList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/Mypage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Mypage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+>>>>>>> 47a44e93fe15c8e22906975ff0312d73e5578fcb
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,10 +72,11 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/nav" />
       <recent name="$PROJECT_DIR$/src/components/main" />
       <recent name="$PROJECT_DIR$/src/components/board" />
     </key>
@@ -93,9 +112,14 @@
       <workItem from="1589351706498" duration="6141000" />
       <workItem from="1589358109991" duration="23000" />
       <workItem from="1589358508574" duration="483000" />
+<<<<<<< HEAD
       <workItem from="1589359010380" duration="13094000" />
       <workItem from="1589449780384" duration="2627000" />
       <workItem from="1589519136226" duration="17000" />
+=======
+      <workItem from="1589359010380" duration="13544000" />
+      <workItem from="1589522382354" duration="4332000" />
+>>>>>>> 47a44e93fe15c8e22906975ff0312d73e5578fcb
     </task>
     <servers />
   </component>
