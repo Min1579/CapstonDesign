@@ -44,16 +44,16 @@ public class UserController {
     }
 
     @PutMapping("mypage/{serId}/edit-profile")
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> editPicture(@PathVariable final Long serId,
-                                         @RequestParam MultipartFile file,
-                                         @RequestBody UserProfileEditForm form) throws NameNotFoundException, IOException {
+                                         @RequestParam MultipartFile file
+                                        ) throws NameNotFoundException, IOException {
         // file save in resources/profile
         String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/profile/";
         Path fileNameAndPath = Paths.get(uploadDirectory + file.getOriginalFilename());
         Files.write(fileNameAndPath, file.getBytes());
 
-        final Long userEditId = userService.editProfile(serId, form, "/profile/" + file.getOriginalFilename());
+        final Long userEditId = userService.editProfile(serId,"http://localhost:8080/profile/" + file.getOriginalFilename());
         return new ResponseEntity<>(userEditId, HttpStatus.OK);
     }
 
