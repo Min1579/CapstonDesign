@@ -72,10 +72,11 @@ public class UserService {
 //        return userRepository.findByUsernameOrEmail(usernameOrNameOrEmail,usernameOrNameOrEmail);
     }
     @Transactional
-    public Long editProfile(final Long userId, final UserProfileEditForm form) throws NameNotFoundException {
-        return userRepository.findById(userId)
-                .orElseThrow(NameNotFoundException::new)
-                .editPicture(form.getPicture());
+    public Long editProfile(final Long userId,final UserProfileEditForm form, final String path) throws NameNotFoundException {
+        User user = userRepository.findById(userId)
+                .orElseThrow(NameNotFoundException::new);
+        user.setPicture(path);
+        return user.getId();
     }
 
 }

@@ -6,9 +6,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.naming.NameNotFoundException;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Slf4j
@@ -40,8 +45,15 @@ public class UserController {
 
     @PutMapping("mypage/{serId}/edit-profile")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> editPicture(@PathVariable final Long serId, @RequestBody final UserProfileEditForm form) throws NameNotFoundException {
-        final Long userEditId = userService.editProfile(serId, form);
+    public ResponseEntity<?> editPicture(@PathVariable final Long serId,
+                                         @RequestParam MultipartFile file,
+                                         @RequestBody UserProfileEditForm form) throws NameNotFoundException, IOException {
+        // file save in resources/profile
+        String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/profile/";
+        Path fileNameAndPath = Paths.get(uploadDirectory + file.getOriginalFilename());
+        Files.write(fileNameAndPath, file.getBytes());
+
+        final Long userEditId = userService.editProfile(serId, form, "/profile/" + file.getOriginalFilename());
         return new ResponseEntity<>(userEditId, HttpStatus.OK);
     }
 
