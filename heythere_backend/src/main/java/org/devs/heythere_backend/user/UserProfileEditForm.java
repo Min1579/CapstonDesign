@@ -7,5 +7,7 @@ import lombok.Setter;
 @Getter @Setter
 @RequiredArgsConstructor
 public class UserProfileEditForm {
-    private String picture;
+    private String email;
+    private String name;
+    private String password;
 }
