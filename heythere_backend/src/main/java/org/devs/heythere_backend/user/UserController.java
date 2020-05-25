@@ -3,6 +3,7 @@ package org.devs.heythere_backend.user;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping("mypage/{serId}")
+    @PostMapping("mypage/{userId}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<UserMypageResponseDto> findUserByIdAndSendToMypage(@PathVariable("userId") final Long userId) {
         final UserMypageResponseDto response = userService.findUserByIdAndSendToMypage(userId);
@@ -43,18 +44,19 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("mypage/{serId}/edit-profile")
-//    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> editPicture(@PathVariable final Long serId,
-                                         @RequestParam MultipartFile file
-                                        ) throws NameNotFoundException, IOException {
-        // file save in resources/profile
-        String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/profile/";
-        Path fileNameAndPath = Paths.get(uploadDirectory + file.getOriginalFilename());
-        Files.write(fileNameAndPath, file.getBytes());
-
-        final Long userEditId = userService.editProfile(serId,"http://localhost:8080/profile/" + file.getOriginalFilename());
+    @PutMapping("mypage/{userId}/edit-profile")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> editProfile(@PathVariable final Long userId,
+                                         @RequestBody final UserProfileEditForm form
+                                        ) {
+        Long userEditId = userService.editProfile(userId , form);
         return new ResponseEntity<>(userEditId, HttpStatus.OK);
+    }
+    @PutMapping("mypage/{userId}/upload-profile")
+    public ResponseEntity<?> uploadProfile(@PathVariable final Long userId,
+                                           @RequestParam final MultipartFile file) throws IOException{
+        Long userUploadProfileId = userService.uploadProfile(userId,file);
+        return new ResponseEntity<>(userUploadProfileId,HttpStatus.OK);
     }
 
 }
