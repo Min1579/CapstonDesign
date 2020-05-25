@@ -35,8 +35,8 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping("mypage/{serId}")
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasAnyRole('USER')")
+    @GetMapping("mypage/{userId}")
     public ResponseEntity<UserMypageResponseDto> findUserByIdAndSendToMypage(@PathVariable("userId") final Long userId) {
         final UserMypageResponseDto response = userService.findUserByIdAndSendToMypage(userId);
         log.info("mypage");

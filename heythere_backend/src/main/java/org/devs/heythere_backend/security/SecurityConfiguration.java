@@ -60,10 +60,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/chatting/**").permitAll()
                 .antMatchers("/board/**").permitAll()
                 .antMatchers("/comment/**").permitAll()
-                .antMatchers("/user/search/**").permitAll()
+                .antMatchers("/user/**").permitAll()
                 .antMatchers("/main/**").permitAll()
                 .antMatchers("/profile/**").permitAll()
                 .antMatchers("/user/mypage/**").permitAll()
+                .antMatchers("/video/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/").permitAll()
                 .anyRequest()
                 .authenticated();
