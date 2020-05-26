@@ -76,7 +76,19 @@ public class UserService {
 //        return userRepository.findByUsernameOrEmail(usernameOrNameOrEmail,usernameOrNameOrEmail);
     }
     @Transactional
-    public Long editProfile(final Long userId, final UserProfileEditForm form, final MultipartFile file) throws IOException {
+    public Long editProfile(final Long userId, final String email, final String name, final String password){
+        User user = userRepository.findById(userId)
+                .orElseThrow(()-> new UserNotFoundException("Not Found UserID : " + userId));
+
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(passwordEncoder.encode(password));
+
+        return user.getId();
+    }
+
+    @Transactional
+    public Long uploadProfileImg(final Long userId, final MultipartFile file) throws IOException {
         User user = userRepository.findById(userId)
                 .orElseThrow(()-> new UserNotFoundException("Not Found UserID : " + userId));
 
@@ -84,11 +96,8 @@ public class UserService {
         Path fileNameAndPath = Paths.get(uploadDirectory + userId + "_" + file.getOriginalFilename());
         Files.write(fileNameAndPath, file.getBytes());
 
-        user.setName(form.getName());
-        user.setEmail(form.getEmail());
-        user.setPassword(passwordEncoder.encode(form.getPassword()));
-
         user.setPicture("http://localhost:8080/profile/" + userId + "_" + file.getOriginalFilename());
+
         return user.getId();
     }
 

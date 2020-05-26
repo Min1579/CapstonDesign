@@ -1,12 +1,9 @@
 package org.devs.heythere_backend.user;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class UserProfileEditForm {
     private String email;
     private String name;
