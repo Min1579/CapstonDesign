@@ -45,18 +45,20 @@ public class UserController {
     }
 
     @PutMapping("mypage/{userId}/edit-profile")
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> editProfile(@PathVariable final Long userId,
-                                         @RequestBody final UserProfileEditForm form
-                                        ) {
-        Long userEditId = userService.editProfile(userId , form);
+                                         @RequestParam final String name,
+                                         @RequestParam final String email,
+                                         @RequestParam final String password,
+                                         @RequestParam final MultipartFile file) throws IOException {
+        UserProfileEditForm form = UserProfileEditForm.builder()
+                .email(email)
+                .name(name)
+                .password(password)
+                .build();
+        Long userEditId = userService.editProfile(userId , form, file);
         return new ResponseEntity<>(userEditId, HttpStatus.OK);
     }
-    @PutMapping("mypage/{userId}/upload-profile")
-    public ResponseEntity<?> uploadProfile(@PathVariable final Long userId,
-                                           @RequestParam final MultipartFile file) throws IOException{
-        Long userUploadProfileId = userService.uploadProfile(userId,file);
-        return new ResponseEntity<>(userUploadProfileId,HttpStatus.OK);
-    }
+
 
 }
