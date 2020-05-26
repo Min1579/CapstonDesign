@@ -1,0 +1,49 @@
+.video-description-box {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: white;
+    padding: 5px;
+}
+
+.video-description-box_title {
+    border-bottom: 1px solid white;
+}
+
+.video-description-box_description {
+    padding: 15px;
+    height: 120px;
+    border-bottom: 1px solid white;
+}
+
+.video-description-box_description > * {
+    vertical-align: middle;
+}
+.author_profile {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+.subscribe_button {
+    background: red;
+    color: white;
+    font: 20px bold;
+    float: right;
+    height: 50px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.author_info {
+    display: inline-block;
+    list-style: none;
+}
+
+.open-description {
+    margin-top: 5px;
+    font-size: small;
+}

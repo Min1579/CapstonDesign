@@ -1,0 +1,41 @@
+.video, .thumbnail {
+    display: inline-block;
+    margin: 10px;
+}
+
+.form-title {
+    display: inline-block;
+    margin: auto;
+    padding: auto;
+    width: 30rem;
+    height: 18rem;
+    border-radius: 20px;
+    border: 5px dashed white;
+    text-align: center;
+    vertical-align:  middle;
+    font-size: 30px;
+}
+
+.form-control-multipart {
+    display: none;
+}
+
+
+.button {
+    border: 3px solid white;
+    color: white;
+    background: black;
+    margin: 5px;
+    padding: 5px;
+}
+
+.button:active,
+.button:hover {
+    background: white;
+    color: black;
+    border: white;
+}
+
+.video-upload-box * {
+    color: white;
+}

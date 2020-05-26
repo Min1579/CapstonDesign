@@ -1,0 +1,22 @@
+.user-icon {
+    color: white;
+    background: black;
+    border: 3px solid white;
+    border-radius: 40px;
+}
+
+.user-icon:active,
+.user-icon:hover {
+    background: white;
+    color: black;
+    border: white;
+}
+
+.menu-link {
+    display: block;
+    text-decoration: none;
+    list-style: none;
+    color: black;
+    padding: auto;
+    margin: 10px;
+}

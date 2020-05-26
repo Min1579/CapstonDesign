@@ -1,0 +1,39 @@
+
+.main-navbar {
+    width: 100%;
+    background: rgb(0,0,0);
+}
+
+.row, .col {
+    margin: 0;
+    padding: 0;
+}
+
+.modal-button {
+
+}
+
+
+.button {
+    border: 3px solid white;
+    color: white;
+    background: black;
+    margin: 5px;
+    padding: 5px;
+}
+
+.button:active,
+.button:hover {
+    background: white;
+    color: black;
+    border: white;
+}
+
+.main-link {
+    text-decoration: none;
+    color: white;
+}
+
+.main {
+    background: rgba(0,0,0,0.9);
+}

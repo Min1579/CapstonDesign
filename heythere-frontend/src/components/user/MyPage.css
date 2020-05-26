@@ -1,0 +1,11 @@
+.box-container {
+    margin-left: 250px;
+    margin-right: 250px;
+    padding-left: 250px;
+    padding-right: 250px;
+}
+
+
+.mypage-box * {
+    color: white;
+}

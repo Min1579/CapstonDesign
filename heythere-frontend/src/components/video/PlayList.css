@@ -1,0 +1,19 @@
+.playlist_main {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.playlist_main > * {
+    color: white;
+}
+.scrollbox {
+    width: inherit;
+    overflow: scroll;
+
+}
+
+.video-thumbnail {
+    width: 150px;
+    height: 100px;
+}

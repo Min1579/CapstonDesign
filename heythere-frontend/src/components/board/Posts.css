@@ -1,0 +1,13 @@
+.table * {
+    color: white;
+    font-size: 15px;
+}
+
+.table td:not(.title) {
+    text-align: center;
+}
+
+.title:active,
+.title:hover{
+    transform: scale(1.1);
+}
