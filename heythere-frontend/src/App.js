@@ -8,11 +8,12 @@ import MainContent from "./layout/MainContent";
 import UserLoginModal from "./components/modal/UserLoginModal";
 import UserRegisterModal from "./components/modal/UserRegisterModal";
 import User from "./components/user/User";
-import Mypage from "./components/user/Mypage";
+import Mypage from "./components/mypage/Mypage";
 import OnLive from "./components/user/OnLive";
 import VideoUpload from "./components/user/VideoUpload";
 import BoardMain from "./components/board/BoardMain";
 import VideoMain from "./components/video/VideoMain";
+
 
 const App = () => {
     const defaultAuthInfo = {
