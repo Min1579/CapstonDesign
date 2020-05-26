@@ -2,12 +2,18 @@ package org.devs.heythere_backend.user;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.devs.heythere_backend.exception.UserNotFoundException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.naming.NameNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -70,10 +76,19 @@ public class UserService {
 //        return userRepository.findByUsernameOrEmail(usernameOrNameOrEmail,usernameOrNameOrEmail);
     }
     @Transactional
-    public Long editProfile(final Long userId, final String path) throws NameNotFoundException {
+    public Long editProfile(final Long userId, final UserProfileEditForm form, final MultipartFile file) throws IOException {
         User user = userRepository.findById(userId)
-                .orElseThrow(NameNotFoundException::new);
-        user.setPicture(path);
+                .orElseThrow(()-> new UserNotFoundException("Not Found UserID : " + userId));
+
+        String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/profile/";
+        Path fileNameAndPath = Paths.get(uploadDirectory + userId + "_" + file.getOriginalFilename());
+        Files.write(fileNameAndPath, file.getBytes());
+
+        user.setName(form.getName());
+        user.setEmail(form.getEmail());
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
+
+        user.setPicture("http://localhost:8080/profile/" + userId + "_" + file.getOriginalFilename());
         return user.getId();
     }
 
