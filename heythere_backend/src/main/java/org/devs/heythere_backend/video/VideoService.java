@@ -2,6 +2,7 @@ package org.devs.heythere_backend.video;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.devs.heythere_backend.config.SaveFilePath;
 import org.devs.heythere_backend.user.User;
 import org.devs.heythere_backend.user.UserRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -69,7 +70,7 @@ public class VideoService {
                 .title(title)
                 .description(description)
                 .view(0)
-                .thumbnailUrl(String.format("%s%s", "http://localhost:8080/static/thumbnail/",
+                .thumbnailUrl(String.format("%s%s", "http://localhost:8080/thumbnail/",
                         thumbnail.getOriginalFilename()))
                 .user(videoOwner)
                 .build()

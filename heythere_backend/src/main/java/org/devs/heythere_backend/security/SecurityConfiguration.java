@@ -52,6 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                 .authorizeRequests()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/h2/**").permitAll()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/user/register/**").permitAll()
@@ -65,6 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/profile/**").permitAll()
                 .antMatchers("/user/mypage/**").permitAll()
                 .antMatchers("/video/**").permitAll()
+                .antMatchers("/static/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/").permitAll()
                 .anyRequest()
                 .authenticated();
