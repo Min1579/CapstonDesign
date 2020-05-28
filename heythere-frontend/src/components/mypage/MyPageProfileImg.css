@@ -1,0 +1,54 @@
+.mypage-main {
+    display: inline-block;
+    margin: 10px;
+}
+
+.mypage-main * {
+    color: white;
+}
+
+#profile {
+    display: none;
+}
+.mypage-main__upload-profile {
+    width: 1200px;
+    height: 150px;
+    border: 3px solid white;
+    border-radius: 3px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.upload-profile-img__execute {
+    display: inline-block;
+    float: left;
+}
+
+.img-box {
+    display: inline-block;
+    margin: auto;
+    float: left;
+}
+
+.upload-profile__img {
+    display: inline;
+    border-radius: 50%;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+
+}
+
+.upload-profile__execute {
+    display: inline-block;
+    float: left;
+    margin-top: 20px;
+}
+
+ul > li {
+    list-style: none;
+    text-decoration: none;
+}
+.profile-button {
+    width: fit-content;
+}

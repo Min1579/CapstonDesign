@@ -6,6 +6,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+/src/main/java/org/devs/heythere_backend/config/SaveFilePath.java
 
 ### STS ###
 .apt_generated
