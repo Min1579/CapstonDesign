@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.devs.heythere_backend.user.User;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -24,8 +26,11 @@ public class Video {
     private String videoUrl;
     private String thumbnailUrl;
 
+    @OneToMany(mappedBy = "video")
+    private List<VideoComment> comments = new ArrayList<>();
+
     @Builder
-    public Video(String fileName, String title, String description, int view, User user, String videoUrl, String thumbnailUrl) {
+    public Video(String fileName, String title, String description, int view, User user, String videoUrl, String thumbnailUrl, List<VideoComment> comments) {
         this.fileName = fileName;
         this.title = title;
         this.description = description;
@@ -33,6 +38,7 @@ public class Video {
         this.user = user;
         this.videoUrl = videoUrl;
         this.thumbnailUrl = thumbnailUrl;
+        this.comments = comments;
     }
 
     public void setStreamingUrl(final String videoUrl) {

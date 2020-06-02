@@ -4,9 +4,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.devs.heythere_backend.user.User;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 public class BoardModifyResponseDto {
     private Long id;
@@ -21,5 +21,4 @@ public class BoardModifyResponseDto {
         this.writer = writer;
         this.content = content;
     }
-
 }

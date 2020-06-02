@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter @Getter
+@Setter
+@Getter
 @NoArgsConstructor
 public class BoardRegisterRegisterFormDto {
     private String title;
@@ -17,7 +18,7 @@ public class BoardRegisterRegisterFormDto {
         this.content = content;
     }
 
-    public Board toBoardEntity(){
+    public Board toBoardEntity() {
         return Board.builder()
                 .title(title)
                 .content(content)

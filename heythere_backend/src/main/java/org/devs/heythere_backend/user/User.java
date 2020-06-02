@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.devs.heythere_backend.board.Board;
+import org.devs.heythere_backend.video.VideoComment;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Board> boards = new ArrayList<>();
 
+
     @Builder
     public User(Long id, String username, String name, String email, String password, String picture, Set<Role> roles) {
         this.id = id;
@@ -54,5 +57,25 @@ public class User {
     }
     public void updateStatus(final UserStatus status) {
         this.status = status;
+    }
+
+    public User updateProfilePicture(final MultipartFile picture) {
+        this.setPicture("http://localhost:8080/img/" + picture.getOriginalFilename());
+        return this;
+    }
+
+    public User updateUsername(final String username) {
+        setUsername(username);
+        return this;
+    }
+
+    public User updateName(final String name) {
+        setName(name);
+        return this;
+    }
+
+    public User updateEmail(final String email) {
+        setEmail(email);
+        return this;
     }
 }

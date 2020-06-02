@@ -21,14 +21,12 @@ public class BoardService {
     @Transactional
     public List<BoardResponseDto> getAllBoardsByBoardId(final Long boardId) {
         return boardRepository.getAllByBoardOwnerId(boardId).stream()
-                .map(board -> {
-                    return BoardResponseDto.builder()
-                            .id(board.getId())
-                            .title(board.getTitle())
-                            .writer(board.getWriter())
-                            .view(board.getView())
-                            .build();
-                })
+                .map(board -> BoardResponseDto.builder()
+                        .id(board.getId())
+                        .title(board.getTitle())
+                        .writer(board.getWriter())
+                        .view(board.getView())
+                        .build())
                 .collect(Collectors.toList());
     }
 
@@ -51,7 +49,7 @@ public class BoardService {
 
     @Transactional
     public Long registerBoard(final Long userId, final Long boardOwnerId,
-                              final BoardRegisterRegisterFormDto boardRegisterRegisterFormDto){
+                              final BoardRegisterRegisterFormDto boardRegisterRegisterFormDto) {
         final User writer = userRepository.findById(userId)
                 .orElseThrow(() -> new UsernameNotFoundException("USER NOT FOUND ID : " + userId));
 
@@ -68,7 +66,7 @@ public class BoardService {
     }
 
     @Transactional
-    public BoardModifyResponseDto updateBoard(final Long boardId, final Map<String, String> content){
+    public BoardModifyResponseDto updateBoard(final Long boardId, final Map<String, String> content) {
         final Board target = boardRepository.getBoardById(boardId)
                 .orElseThrow(()
                         -> new BoardNotFoundException("BOARD NOT FOUND ID : " + boardId))
@@ -83,7 +81,7 @@ public class BoardService {
     }
 
     @Transactional
-    public boolean deleteBoard(final Long boardId, final Long userId){
+    public boolean deleteBoard(final Long boardId, final Long userId) {
         final Board target = boardRepository.getBoardById(boardId)
                 .orElseThrow(()
                         -> new BoardNotFoundException("BOARD NOT FOUND ID : " + boardId));

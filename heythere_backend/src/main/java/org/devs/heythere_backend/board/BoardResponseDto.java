@@ -10,7 +10,8 @@ import org.devs.heythere_backend.user.User;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter @Getter
+@Setter
+@Getter
 @NoArgsConstructor
 public class BoardResponseDto {
     private Long id;
