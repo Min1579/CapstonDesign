@@ -24,29 +24,29 @@ public class VideoService {
     private final VideoRepository videoRepository;
     private final UserRepository userRepository;
 
-    private synchronized boolean saveVideoToLocalServer(final MultipartFile video)  {
+    private synchronized boolean saveVideoToLocalServer(final MultipartFile video) {
         final String path = String.format("%s%s", SaveFilePath.FILE_VIDEO_SAVE_DIR, video.getOriginalFilename());
 
-        try{
-            byte [] file = video.getBytes();
+        try {
+            byte[] file = video.getBytes();
             final FileOutputStream fos = new FileOutputStream(path);
             fos.write(file);
             fos.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             return false;
         }
         return true;
     }
 
-    private synchronized boolean saveThumbnailToLocalServer(final MultipartFile thumbnail)  {
-        final String path = String.format("%s%s", SaveFilePath.FILE_THUMBNAIL_SAVE_DIR ,thumbnail.getOriginalFilename());
+    private synchronized boolean saveThumbnailToLocalServer(final MultipartFile thumbnail) {
+        final String path = String.format("%s%s", SaveFilePath.FILE_THUMBNAIL_SAVE_DIR, thumbnail.getOriginalFilename());
 
-        try{
-            byte [] file = thumbnail.getBytes();
+        try {
+            byte[] file = thumbnail.getBytes();
             final FileOutputStream fos = new FileOutputStream(path);
             fos.write(file);
             fos.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             return false;
         }
         return true;
@@ -57,11 +57,11 @@ public class VideoService {
                      final MultipartFile video, final MultipartFile thumbnail) {
         final User videoOwner = userRepository.findById(userId)
                 .orElseThrow(() -> new UsernameNotFoundException("USER NOT FOUND!"));
-        if (!saveVideoToLocalServer(video)){
+        if (!saveVideoToLocalServer(video)) {
             throw new RuntimeException("Video Save Failed!");
         }
 
-        if (!saveThumbnailToLocalServer(thumbnail)){
+        if (!saveThumbnailToLocalServer(thumbnail)) {
             throw new RuntimeException("Thumbnail Save Failed!");
         }
 
@@ -81,29 +81,49 @@ public class VideoService {
     }
 
     @Transactional
-    public String findVideoNameById(Long videoId) {
+    public String findVideoNameById(final Long videoId) {
         final Video video = videoRepository.findById(videoId)
-                .orElseThrow(()-> new RuntimeException("Video Not found"));
+                .orElseThrow(() -> new RuntimeException("Video Not found"));
         return video.getFileName();
     }
 
     @Transactional
     public List<StreamingVideoResponseDto> findAll() {
         return videoRepository.findAll().stream()
-                .map(video -> {
+                .map(video -> StreamingVideoResponseDto.builder()
+                        .id(video.getId())
+                        .title(video.getTitle())
+                        .description(video.getDescription())
+                        .view(video.getView())
+                        .thumbnailUrl(video.getThumbnailUrl())
+                        .videoUrl(video.getVideoUrl())
+                        .username(video.getUser().getName())
+                        .picture(video.getUser().getPicture())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<StreamingVideoResponseDto> findAllById(final Long videoId) {
+        final User user = videoRepository.findById(videoId)
+                .orElseThrow(() -> new RuntimeException("video not found"))
+                .getUser();
+
+        return videoRepository.findAllByUser(user).stream()
+                .map(v -> {
                     return StreamingVideoResponseDto.builder()
-                            .id(video.getId())
-                            .title(video.getTitle())
-                            .description(video.getDescription())
-                            .view(video.getView())
-                            .thumbnailUrl(video.getThumbnailUrl())
-                            .videoUrl(video.getVideoUrl())
-                            .username(video.getUser().getName())
-                            .picture(video.getUser().getPicture())
+                            .id(v.getId())
+                            .username(v.getUser().getUsername())
+                            .videoUrl(v.getVideoUrl())
+                            .thumbnailUrl(v.getThumbnailUrl())
+                            .view(v.getView())
+                            .description(v.getDescription())
+                            .title(v.getTitle())
+                            .fileName(v.getFileName())
+                            .picture(v.getUser().getPicture())
                             .build();
                 })
                 .collect(Collectors.toList());
-
     }
 }
 

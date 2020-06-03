@@ -2,7 +2,7 @@ package org.devs.heythere_backend.user;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.devs.heythere_backend.exception.UserNotFoundException;
+import org.devs.heythere_backend.config.SaveFilePath;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,10 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.io.FileOutputStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,6 +43,11 @@ public class UserService {
     }
 
     @Transactional
+    public boolean existByName(final String name) {
+        return userRepository.existsByUsername(name);
+    }
+
+    @Transactional
     public boolean existByEmail(final String email) {
         return userRepository.existsByEmail(email);
     }
@@ -75,30 +77,57 @@ public class UserService {
                 .collect(Collectors.toList());
 //        return userRepository.findByUsernameOrEmail(usernameOrNameOrEmail,usernameOrNameOrEmail);
     }
+
     @Transactional
-    public Long editProfile(final Long userId, final String email, final String name, final String password){
-        User user = userRepository.findById(userId)
-                .orElseThrow(()-> new UserNotFoundException("Not Found UserID : " + userId));
+    public String updatePicture(final Long userId, final MultipartFile picture) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found, Id : " + userId))
+                .updateProfilePicture(saveUserProfileImgToLocalServer(picture))
+                .getPicture();
+    }
 
-        user.setName(name);
-        user.setEmail(email);
-        user.setPassword(passwordEncoder.encode(password));
+    private synchronized MultipartFile saveUserProfileImgToLocalServer(final MultipartFile picture) {
+        final String path = String.format("%s%s", SaveFilePath.FILE_IMG_SAVE_DIR, picture.getOriginalFilename());
 
-        return user.getId();
+        try {
+            byte[] file = picture.getBytes();
+            final FileOutputStream fos = new FileOutputStream(path);
+            fos.write(file);
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return picture;
+    }
+
+    public String getUserPictureById(final Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found, ID : " + userId))
+                .getPicture();
     }
 
     @Transactional
-    public Long uploadProfileImg(final Long userId, final MultipartFile file) throws IOException {
-        User user = userRepository.findById(userId)
-                .orElseThrow(()-> new UserNotFoundException("Not Found UserID : " + userId));
+    public String updateUsername(Long userId, String username) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found, ID : " + userId))
+                .updateUsername(username)
+                .getUsername();
 
-        String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/profile/";
-        Path fileNameAndPath = Paths.get(uploadDirectory + userId + "_" + file.getOriginalFilename());
-        Files.write(fileNameAndPath, file.getBytes());
-
-        user.setPicture("http://localhost:8080/profile/" + userId + "_" + file.getOriginalFilename());
-
-        return user.getId();
     }
 
+    @Transactional
+    public String updateName(Long userId, String name) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found, ID : " + userId))
+                .updateName(name)
+                .getName();
+    }
+
+    @Transactional
+    public String updateEmail(Long userId, String email) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found, ID : " + userId))
+                .updateEmail(email)
+                .getEmail();
+    }
 }

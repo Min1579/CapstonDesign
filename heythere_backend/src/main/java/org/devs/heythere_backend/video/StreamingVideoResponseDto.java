@@ -21,7 +21,12 @@ public class StreamingVideoResponseDto {
     @Builder
     public StreamingVideoResponseDto(final Long id,
                                      final String fileName,
-                                     final String title, final String description, int view, String videoUrl, String thumbnailUrl, String username, String picture) {
+                                     final String title,
+                                     final String description,
+                                     final int view, final String videoUrl,
+                                     final String thumbnailUrl,
+                                     final String username,
+                                     final String picture) {
         this.id = id;
         this.fileName = fileName;
         this.title = title;

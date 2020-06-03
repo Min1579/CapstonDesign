@@ -57,6 +57,7 @@ public class AuthController {
                 .picture(loginUser.getPicture())
                 .accessToken(token)
                 .build();
+
         log.info("auth user : {} " , response);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
