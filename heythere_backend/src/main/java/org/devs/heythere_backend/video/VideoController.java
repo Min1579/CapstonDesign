@@ -50,6 +50,12 @@ public class VideoController {
         };
     }
 
+    @GetMapping("retrieve/{videoId}")
+    public ResponseEntity<List<StreamingVideoResponseDto>> retrieveVideos(@PathVariable("videoId") final Long videoId) {
+        List<StreamingVideoResponseDto> response = videoService.findAllById(videoId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     private void readAndWrite(final InputStream is, OutputStream os) throws IOException {
         byte[] data = new byte[2048*4];
         int read = 0;

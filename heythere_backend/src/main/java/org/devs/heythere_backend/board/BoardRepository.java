@@ -7,7 +7,8 @@ import java.util.Optional;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
     Optional<Board> getBoardById(final Long id);
+
     void removeById(final Long boardId);
 
-    List<Board> getAllByBoardOwnerId(Long boardOwnerId);
+    List<Board> getAllByBoardOwnerId(final Long boardOwnerId);
 }

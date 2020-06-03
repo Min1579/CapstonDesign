@@ -10,8 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
-import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("search/{usernameOrNameOrEmail}")
-    public ResponseEntity<?> searchByUsernameOrNameOrEmail(@PathVariable final String usernameOrNameOrEmail){
+    public ResponseEntity<?> searchByUsernameOrNameOrEmail(@PathVariable final String usernameOrNameOrEmail) {
         List<UserResearchFoundResponseDto> users = userService.searchByUsernameOrNameOrEmail(usernameOrNameOrEmail);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
@@ -40,25 +41,56 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("mypage/{userId}/edit-profile")
-//    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> editProfile(@PathVariable final Long userId,
-                                         @RequestParam final String email,
-                                         @RequestParam final String name,
-                                         @RequestParam final String password){
-        Long userEditId = userService.editProfile(userId, email, name, password);
-        return new ResponseEntity<>(userEditId, HttpStatus.OK);
-    }
-
-    @PutMapping("mypage/{userId}/upload-profile-img")
-    public ResponseEntity<?> uploadProfile(@PathVariable final Long userId,
-                                           @RequestParam final MultipartFile file) throws IOException {
-        if (file.isEmpty())
-            return new ResponseEntity<>("no Content",HttpStatus.NOT_FOUND);
-        Long userImgUpload = userService.uploadProfileImg(userId,file);
-        return new ResponseEntity<>(userImgUpload, HttpStatus.OK);
-
+    @GetMapping("mypage/img/{userId}")
+    public ResponseEntity<Map<String, String>> getUserProfilePicture(@PathVariable("userId") final Long userId) {
+        Map<String, String> response = new HashMap<>();
+        response.put("picture", userService.getUserPictureById(userId));
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
+    @PutMapping(value = "mypage/upload/img/{userId}",
+            headers = "Content-Type= multipart/form-data",
+            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, "application/x-www-form-urlencoded"})
+    public ResponseEntity<Map<String, String>> updateUserProfileImg(@PathVariable("userId") final Long userId,
+                                                                    @RequestParam("picture") final MultipartFile picture) {
+        Map<String, String> response = new HashMap<>();
+        response.put("picture", userService.updatePicture(userId, picture));
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("mypage/profile/valid/{input}/t/{type}")
+    public ResponseEntity<Map<String, Boolean>> validationChecker(
+            @PathVariable("input") final String input,
+            @PathVariable("type") final int type) {
+
+        Map<String, Boolean> response = new HashMap<>();
+        if(type == 0)
+            response.put("valid", userService.existByUsername(input));
+
+        if (type == 1)
+            response.put("valid", userService.existByName(input));
+
+        response.put("valid", userService.existByEmail(input));
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PutMapping("mypage/{userId}/profile/t/{type}")
+    public ResponseEntity<Map<String, String>> updateUserProfile(
+            @PathVariable("userId") final Long userId,
+            @PathVariable("type") final int type,
+            @RequestBody @Valid final Map<String, String> request) {
+
+        Map<String, String> response = new HashMap<>();
+
+        if (type == 0)
+            response.put("username", userService.updateUsername(userId, request.get("username")));
+
+        if (type == 1)
+            response.put("name", userService.updateName(userId, request.get("name")));
+
+        if (type == 2 )
+            response.put("email", userService.updateEmail(userId, request.get("email")));
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

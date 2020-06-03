@@ -12,11 +12,13 @@ import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter @Getter
+@Setter
+@Getter
 @NoArgsConstructor
 @Entity
-public class Board{
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Board {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")
     private Long id;
 

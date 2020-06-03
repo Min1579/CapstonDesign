@@ -10,8 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Map;
-
 @RequiredArgsConstructor
 @Service
 public class CommentService {
@@ -35,7 +33,7 @@ public class CommentService {
                 .comment(reply)
                 .build();
 
-        comment.setTargetBoard(board); // <->
+        comment.setTargetBoard(board);
 
         return commentRepository.save(comment).getId();
     }
