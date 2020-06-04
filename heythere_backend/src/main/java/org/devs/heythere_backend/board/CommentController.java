@@ -1,4 +1,4 @@
-package org.devs.heythere_backend.comment;
+package org.devs.heythere_backend.board;
 
 import lombok.RequiredArgsConstructor;
 import org.devs.heythere_backend.exception.HasNoAuthorityException;

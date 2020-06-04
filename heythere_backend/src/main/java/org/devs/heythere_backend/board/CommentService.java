@@ -1,8 +1,6 @@
-package org.devs.heythere_backend.comment;
+package org.devs.heythere_backend.board;
 
 import lombok.RequiredArgsConstructor;
-import org.devs.heythere_backend.board.Board;
-import org.devs.heythere_backend.board.BoardRepository;
 import org.devs.heythere_backend.exception.BoardNotFoundException;
 import org.devs.heythere_backend.user.User;
 import org.devs.heythere_backend.user.UserRepository;

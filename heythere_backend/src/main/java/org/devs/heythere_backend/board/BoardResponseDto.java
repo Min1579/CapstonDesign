@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.devs.heythere_backend.comment.Comment;
 import org.devs.heythere_backend.user.User;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package org.devs.heythere_backend.comment;
+package org.devs.heythere_backend.board;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

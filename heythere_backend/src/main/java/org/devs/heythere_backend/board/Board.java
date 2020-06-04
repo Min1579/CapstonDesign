@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.devs.heythere_backend.comment.Comment;
 import org.devs.heythere_backend.user.User;
 
 import javax.persistence.*;
@@ -35,6 +34,8 @@ public class Board {
     private String content;
 
     private int view;
+    private int like;
+    private int hate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -44,9 +45,8 @@ public class Board {
     private List<Comment> comments = new ArrayList<>();
 
     @Builder
-    public Board(Long id, Long boardOwnerId, String title, String writer,
-                 String content, int view, User user,
-                 List<Comment> comments) {
+    public Board(Long id, Long boardOwnerId, String title, String writer, String content, int view, User user,
+                 List<Comment> comments,  int like, int hate) {
         this.id = id;
         this.boardOwnerId = boardOwnerId;
         this.title = title;
@@ -55,12 +55,11 @@ public class Board {
         this.view = view;
         this.user = user;
         this.comments = comments;
+        this.like = like;
+        this.hate = hate;
     }
 
-    public Board addViewCount() {
-        ++view;
-        return this;
-    }
+
 
     public Board updateBoard(final String content) {
         this.content = content;
