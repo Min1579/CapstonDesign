@@ -11,7 +11,8 @@ import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter @Getter
+@Setter
+@Getter
 @NoArgsConstructor
 @Entity
 public class VideoComment {
@@ -30,8 +31,9 @@ public class VideoComment {
 
     @NotBlank
     private String comment;
-    private int like;
-    private int hate;
+
+    private int good;
+    private int bad;
 
     @OneToMany(mappedBy = "videoComment")
     private List<VideoLargeComment> largeComments = new ArrayList<>();
@@ -42,13 +44,11 @@ public class VideoComment {
     }
 
     @Builder
-    public VideoComment(Long id, User user, Video video, String comment, int like, int hate, List<VideoLargeComment> largeComments) {
+    public VideoComment(Long id, User user, Video video, String comment, List<VideoLargeComment> largeComments) {
         this.id = id;
         this.user = user;
         this.video = video;
         this.comment = comment;
-        this.like = like;
-        this.hate = hate;
         this.largeComments = largeComments;
     }
 
@@ -68,23 +68,23 @@ public class VideoComment {
         return this;
     }
 
-    public VideoComment updateLike() {
-        this.setLike(like + 1);
+    public VideoComment updateGood() {
+        this.setGood(good + 1);
         return this;
     }
 
-    public VideoComment updateCancelLike() {
-        this.setLike(like - 1);
+    public VideoComment updateCancelGood() {
+        this.setGood(good - 1);
         return this;
     }
 
-    public VideoComment updateHate() {
-        this.setLike(hate + 1);
+    public VideoComment updateBad() {
+        this.setBad(bad + 1);
         return this;
     }
 
-    public VideoComment updateCancelHate() {
-        this.setLike(hate - 1);
+    public VideoComment updateCancelBad() {
+        this.setBad(bad - 1);
         return this;
     }
 

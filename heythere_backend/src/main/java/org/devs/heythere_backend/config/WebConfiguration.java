@@ -17,9 +17,4 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .maxAge(MAX_AGES_SECS);
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/profile/**")
-                .addResourceLocations("classpath:/profile/");
-    }
 }

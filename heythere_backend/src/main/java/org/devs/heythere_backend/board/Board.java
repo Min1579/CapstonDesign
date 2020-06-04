@@ -33,9 +33,9 @@ public class Board {
     @Column(columnDefinition = "CLOB")
     private String content;
 
-    private int view;
-    private int like;
-    private int hate;
+    private int view = 0;
+    private int good;
+    private int bad;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -46,19 +46,19 @@ public class Board {
 
     @Builder
     public Board(Long id, Long boardOwnerId, String title, String writer, String content, int view, User user,
-                 List<Comment> comments,  int like, int hate) {
+                 List<Comment> comments, int good, int bad) {
         this.id = id;
         this.boardOwnerId = boardOwnerId;
         this.title = title;
         this.writer = writer;
         this.content = content;
         this.view = view;
+        this.good = good;
+        this.bad = bad;
         this.user = user;
         this.comments = comments;
-        this.like = like;
-        this.hate = hate;
-    }
 
+    }
 
 
     public Board updateBoard(final String content) {
