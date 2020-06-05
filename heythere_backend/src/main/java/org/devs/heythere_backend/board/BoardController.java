@@ -17,9 +17,9 @@ import java.util.Map;
 public class BoardController {
     private final BoardService boardService;
 
-    @GetMapping("main/{boardId}")
-    public ResponseEntity<List<BoardResponseDto>> getAllBoardByBoardId(@PathVariable("boardId") final Long boardId) {
-        final List<BoardResponseDto> allBoardsByBoardId = boardService.getAllBoardsByBoardId(boardId);
+    @GetMapping("main/{userId}")
+    public ResponseEntity<List<BoardResponseDto>> getAllBoardByUserId(@PathVariable("userId") final Long userId) {
+        final List<BoardResponseDto> allBoardsByBoardId = boardService.getAllBoardsByUserId(userId);
         return new ResponseEntity<>(allBoardsByBoardId, HttpStatus.OK);
     }
 

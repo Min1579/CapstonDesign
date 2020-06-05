@@ -19,7 +19,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public List<BoardResponseDto> getAllBoardsByBoardId(final Long boardId) {
+    public List<BoardResponseDto> getAllBoardsByUserId(final Long boardId) {
         return boardRepository.getAllByBoardOwnerId(boardId).stream()
                 .map(board -> BoardResponseDto.builder()
                         .id(board.getId())
@@ -34,8 +34,7 @@ public class BoardService {
     public BoardResponseDto getBoardById(final Long boardId) {
         Board target = boardRepository.getBoardById(boardId)
                 .orElseThrow(() ->
-                        new BoardNotFoundException("BOARD NOT FOUND ID : " + boardId))
-                .addViewCount();
+                        new BoardNotFoundException("BOARD NOT FOUND ID : " + boardId));
 
         return BoardResponseDto.builder()
                 .id(target.getId())
@@ -86,7 +85,7 @@ public class BoardService {
                 .orElseThrow(()
                         -> new BoardNotFoundException("BOARD NOT FOUND ID : " + boardId));
 
-        if (userId.equals(target.getUser().getId()))
+        if (!userId.equals(target.getUser().getId()))
             return false;
 
         boardRepository.removeById(boardId);

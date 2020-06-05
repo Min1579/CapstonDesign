@@ -20,10 +20,4 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .maxAge(MAX_AGES_SECS);
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/profile/**")
-                .addResourceLocations("classpath:static/profile/")
-                .setCacheControl(CacheControl.maxAge(5, TimeUnit.SECONDS));
-    }
 }

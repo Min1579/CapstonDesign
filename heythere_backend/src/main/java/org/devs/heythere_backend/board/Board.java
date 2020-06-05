@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.devs.heythere_backend.comment.Comment;
 import org.devs.heythere_backend.user.User;
 
 import javax.persistence.*;
@@ -34,7 +33,9 @@ public class Board {
     @Column(columnDefinition = "CLOB")
     private String content;
 
-    private int view;
+    private int view = 0;
+    private int good;
+    private int bad;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -44,23 +45,21 @@ public class Board {
     private List<Comment> comments = new ArrayList<>();
 
     @Builder
-    public Board(Long id, Long boardOwnerId, String title, String writer,
-                 String content, int view, User user,
-                 List<Comment> comments) {
+    public Board(Long id, Long boardOwnerId, String title, String writer, String content, int view, User user,
+                 List<Comment> comments, int good, int bad) {
         this.id = id;
         this.boardOwnerId = boardOwnerId;
         this.title = title;
         this.writer = writer;
         this.content = content;
         this.view = view;
+        this.good = good;
+        this.bad = bad;
         this.user = user;
         this.comments = comments;
+
     }
 
-    public Board addViewCount() {
-        ++view;
-        return this;
-    }
 
     public Board updateBoard(final String content) {
         this.content = content;

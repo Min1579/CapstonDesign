@@ -1,15 +1,15 @@
-package org.devs.heythere_backend.comment;
+package org.devs.heythere_backend.board;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.devs.heythere_backend.board.Board;
 import org.devs.heythere_backend.user.User;
 
 import javax.persistence.*;
 
-@Setter @Getter
+@Setter
+@Getter
 @NoArgsConstructor
 @Entity
 public class Comment {

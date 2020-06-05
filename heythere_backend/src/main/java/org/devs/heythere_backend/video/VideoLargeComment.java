@@ -6,15 +6,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.devs.heythere_backend.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-@Setter @Getter
+@Setter
+@Getter
 @NoArgsConstructor
 @Entity
 public class VideoLargeComment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "video_large_comment_id")
     private Long id;
 
     @ManyToOne
@@ -45,7 +47,7 @@ public class VideoLargeComment {
         return this;
     }
 
-    public VideoLargeComment updateComment(final String comment){
+    public VideoLargeComment updateComment(final String comment) {
         this.setComment(comment);
         return this;
     }
