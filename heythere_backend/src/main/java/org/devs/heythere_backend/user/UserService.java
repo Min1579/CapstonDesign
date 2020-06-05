@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.util.Collections;
@@ -87,8 +88,10 @@ public class UserService {
     }
 
     private synchronized MultipartFile saveUserProfileImgToLocalServer(final MultipartFile picture) {
-        final String path = String.format("%s%s", SaveFilePath.FILE_IMG_SAVE_DIR, picture.getOriginalFilename());
+//        File file = new File(picture.getOriginalFilename());
+//        file.renameTo(String.format("%ld_%s",userId, picture.getOriginalFilename()));
 
+        final String path = String.format("%s%s", SaveFilePath.FILE_IMG_SAVE_DIR, picture.getOriginalFilename());
         try {
             byte[] file = picture.getBytes();
             final FileOutputStream fos = new FileOutputStream(path);

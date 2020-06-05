@@ -20,6 +20,9 @@ public class Video {
     private String title;
     private String description;
     private int view;
+    private int good;
+    private int bad;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -30,7 +33,9 @@ public class Video {
     private List<VideoComment> comments = new ArrayList<>();
 
     @Builder
-    public Video(String fileName, String title, String description, int view, User user, String videoUrl, String thumbnailUrl, List<VideoComment> comments) {
+    public Video(String fileName, String title, String description, int view,
+                 User user, String videoUrl, String thumbnailUrl,
+                 List<VideoComment> comments, int good, int bad) {
         this.fileName = fileName;
         this.title = title;
         this.description = description;
@@ -39,6 +44,8 @@ public class Video {
         this.videoUrl = videoUrl;
         this.thumbnailUrl = thumbnailUrl;
         this.comments = comments;
+        this.good = good;
+        this.bad = bad;
     }
 
     public void setStreamingUrl(final String videoUrl) {

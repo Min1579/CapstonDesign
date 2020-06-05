@@ -85,7 +85,7 @@ public class BoardService {
                 .orElseThrow(()
                         -> new BoardNotFoundException("BOARD NOT FOUND ID : " + boardId));
 
-        if (userId.equals(target.getUser().getId()))
+        if (!userId.equals(target.getUser().getId()))
             return false;
 
         boardRepository.removeById(boardId);

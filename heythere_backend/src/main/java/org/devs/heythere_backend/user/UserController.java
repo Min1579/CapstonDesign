@@ -70,8 +70,9 @@ public class UserController {
 
         if (type == 1)
             response.put("valid", userService.existByName(input));
+        if (type == 2)
+            response.put("valid", userService.existByEmail(input));
 
-        response.put("valid", userService.existByEmail(input));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -89,8 +90,9 @@ public class UserController {
         if (type == 1)
             response.put("name", userService.updateName(userId, request.get("name")));
 
-        if (type == 2 )
+        if (type == 2)
             response.put("email", userService.updateEmail(userId, request.get("email")));
+
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

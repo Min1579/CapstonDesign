@@ -42,7 +42,7 @@ public class CommentService {
                 .orElseThrow(()
                         -> new BoardNotFoundException("Comment NOT FOUND ID : " + commentId));
 
-        if (userId.equals(target.getUser().getId()))
+        if (!userId.equals(target.getUser().getId()))
             return false;
 
         commentRepository.removeById(commentId);
