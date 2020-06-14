@@ -1,7 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Redirect} from "react-router-dom";
+import {useHistory, Redirect} from "react-router-dom";
+import Video from "../../page/Video";
 
 const VideoNextCard = ({video}) => {
+    const history = useHistory();
+
+    const videoId = video.id;
+    const redirectHandler = (e) => {
+        history.push(`/video/${videoId}`);
+        window.location.reload();
+    };
     return (
         <>
             <div className="next-video">
@@ -9,7 +17,7 @@ const VideoNextCard = ({video}) => {
                     <img src={video.thumbnailUrl} alt=""/>
                 </div>
                 <div className="next-video-info">
-                    <div><Link to={`/video/${video.id}`}> {video.title}</Link></div>
+                    <button onClick={redirectHandler}>{video.title}</button>
                     <div>{video.description}</div>
                     <div>조회수{video.view} 2020.01.01</div>
                 </div>

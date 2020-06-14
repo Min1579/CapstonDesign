@@ -1,10 +1,11 @@
 import React,{useState} from 'react';
 import "./VideoUpload.css"
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 
 const VideoUpload = ({currentUser}) => {
 
+    const history = useHistory();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [video, setVideo] = useState({preview: "", raw: ""});
@@ -39,7 +40,7 @@ const VideoUpload = ({currentUser}) => {
     };
 
     const onClickHandler = async () => {
-        if (video === null || thumbnail == null || title.length === 0 || description.length === 0) {
+        if (video.raw === "" || thumbnail.raw === "" || title.length === 0 || description.length === 0) {
             console.log("error");
             return;
         }
@@ -62,8 +63,11 @@ const VideoUpload = ({currentUser}) => {
             .then((res) => {
                 console.log(`video  id : ${res.data}`);
                 setVideoUrl(`/video/${res.data}`);
+                console.log(videoUrl)
+                history.push(`/video/${res.data}`);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
+
     };
 
     return (
@@ -77,15 +81,15 @@ const VideoUpload = ({currentUser}) => {
                 <div className="media-file-info">
                     <label htmlFor="video">Video</label>
                     <input id="video" className="display-none" type="file" onChange={videoUploadHandler}/>
-                    <img id="video-preview" src={video.preview} alt=""/>
+                    <video id="video-preview" src={video.preview} autoplay controls />
                 </div>
             </div>
             <br/>
             <input id="title" type="text" placeholder="TITLE" onKeyUp={titleUploadHandler}/>
             <textarea id="description"  placeholder="VIDEO DESCRIPTION" onKeyUp={descriptionUploadHandler}/>
             <br/>
-            <button onClick={onClickHandler}>save</button>
-            <Link className="video-save-button" to={videoUrl} >save</Link>
+            <button className="video-save-button" onClick={onClickHandler}>Upload</button>
+
         </div>
     );
 };

@@ -3,6 +3,7 @@ package org.devs.heythere_backend.video;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.devs.heythere_backend.model.BaseTimeEntity;
 import org.devs.heythere_backend.user.User;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Video {
+public class Video extends BaseTimeEntity {
     @Id @GeneratedValue
     @Column(name = "video_id")
     private Long id;

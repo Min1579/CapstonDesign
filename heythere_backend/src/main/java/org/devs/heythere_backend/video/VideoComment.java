@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.devs.heythere_backend.model.BaseTimeEntity;
 import org.devs.heythere_backend.user.User;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
-public class VideoComment {
+public class VideoComment extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "video_comment_id")
@@ -44,6 +45,7 @@ public class VideoComment {
     public VideoComment(Long id, User user, Video video,
                         String comment, List<VideoLargeComment> largeComments,
                         int good, int bad) {
+        super();
         this.id = id;
         this.user = user;
         this.video = video;

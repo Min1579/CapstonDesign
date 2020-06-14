@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.devs.heythere_backend.model.BaseTimeEntity;
 import org.devs.heythere_backend.user.User;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @NoArgsConstructor
 @Entity
-public class VideoLargeComment {
+public class VideoLargeComment extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "video_large_comment_id")

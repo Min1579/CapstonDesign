@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import axios from "axios";
+import {Link} from "react-router-dom";
 import "./SidebarUserList.css"
 
 const SidebarUserList = () => {
@@ -20,7 +21,7 @@ const SidebarUserList = () => {
             {users.map(user => (
                 <div className="user-in-list">
                     <img src={user.picture} alt=""/>
-                    <span><b>{user.name}({user.username})</b></span>
+                    <span><b><Link to={`/community/${user.userId}`}>{user.name}({user.username})</Link></b></span>
                 </div>
             ))}
 

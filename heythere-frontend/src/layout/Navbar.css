@@ -43,7 +43,7 @@ div.navbar-button {
     font-size: 17px;
 }
 
-button.navbar-serach__button {
+.navbar-serach__button {
     background: url("../img/search.png");
     width: 33px;
     height: 33px;
@@ -77,3 +77,14 @@ button.navbar-serach__button {
     cursor: pointer;
 }
 
+#direct-to-home {
+    text-decoration: none;
+    color: white;
+}
+
+#direct-to-home:link,
+#direct-to-home:hover,
+#direct-to-home:active {
+    text-decoration: none;
+    color: white;
+}
