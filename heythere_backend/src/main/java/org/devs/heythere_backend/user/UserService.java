@@ -69,7 +69,7 @@ public class UserService {
                 usernameOrNameOrEmail,
                 usernameOrNameOrEmail).stream()
                 .map(user -> UserResearchFoundResponseDto.builder()
-                        .id(user.getId())
+                        .userId(user.getId())
                         .username(user.getUsername())
                         .name(user.getName())
                         .email(user.getEmail())

@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 public class UserResearchFoundResponseDto {
-    private Long id;
+    private Long userId;
     private String username;
     private String name;
     private String email;
@@ -16,8 +16,8 @@ public class UserResearchFoundResponseDto {
     private String description;
 
     @Builder
-    public UserResearchFoundResponseDto(Long id, String username, String name, String email, String picture, String description){
-        this.id = id;
+    public UserResearchFoundResponseDto(Long userId, String username, String name, String email, String picture, String description){
+        this.userId = userId;
         this.username = username;
         this.name = name;
         this.email = email;

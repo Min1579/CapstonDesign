@@ -17,7 +17,7 @@ public class SubscribeService {
         final User targetUser = userRepository.findById(targetId)
                 .orElseThrow(() -> new UsernameNotFoundException("user not found, id : " + targetId));
 
-        return subscribeRepository.save(new Subscribe(targetUser, userId)).getId() > 0;
+        return subscribeRepository.save(new Subscriber(targetUser)).getId() > 0;
     }
 
     public void doCancelSubscribe (){

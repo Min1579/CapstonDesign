@@ -30,4 +30,6 @@ public class SubscribeController {
                 new ResponseEntity<>(map, HttpStatus.BAD_REQUEST)
                 : new ResponseEntity<>(map, HttpStatus.OK);
     }
+
+
 }
