@@ -17,36 +17,35 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("user")
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("register")
+    @PostMapping("user/register")
     public ResponseEntity<?> register(@Valid @RequestBody UserRegisterRequestForm registerRequestForm) {
         Long userId = userService.register(registerRequestForm.toUserEntity());
         return new ResponseEntity<>(userId, HttpStatus.CREATED);
     }
 
-    @PostMapping("search/{usernameOrNameOrEmail}")
+    @GetMapping("user/search/{usernameOrNameOrEmail}")
     public ResponseEntity<?> searchByUsernameOrNameOrEmail(@PathVariable final String usernameOrNameOrEmail) {
         List<UserResearchFoundResponseDto> users = userService.searchByUsernameOrNameOrEmail(usernameOrNameOrEmail);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("streaming")
+    @GetMapping("user/streaming")
     public ResponseEntity<List<UserOnStreamingResponseDto>> findAllUserOnStreaming() {
         return new ResponseEntity<>(userService.findAllUserOnStreaming(), HttpStatus.OK);
     }
 
     //@PreAuthorize("hasAnyRole('USER')")
-    @GetMapping("mypage/{userId}")
+    @GetMapping("user/mypage/{userId}")
     public ResponseEntity<UserMypageResponseDto> findUserByIdAndSendToMypage(@PathVariable("userId") final Long userId) {
         final UserMypageResponseDto response = userService.findUserByIdAndSendToMypage(userId);
         log.info("mypage");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("mypage/img/{userId}")
+    @GetMapping("user/mypage/img/{userId}")
     public ResponseEntity<Map<String, String>> getUserProfilePicture(@PathVariable("userId") final Long userId) {
         Map<String, String> response = new HashMap<>();
         response.put("picture", userService.getUserPictureById(userId));
@@ -54,7 +53,7 @@ public class UserController {
     }
 
 
-    @PutMapping(value = "mypage/upload/img/{userId}",
+    @PutMapping(value = "user/mypage/upload/img/{userId}",
             headers = "Content-Type=multipart/form-data",
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, "application/x-www-form-urlencoded"})
     public ResponseEntity<Map<String, String>> updateUserProfileImg(@PathVariable("userId") final Long userId,
@@ -64,7 +63,7 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("mypage/profile/valid/{input}/t/{type}")
+    @GetMapping("user/mypage/profile/valid/{input}/t/{type}")
     public ResponseEntity<Map<String, Boolean>> validationChecker(
             @PathVariable("input") final String input,
             @PathVariable("type") final int type) {
@@ -81,7 +80,7 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("mypage/{userId}/profile/t/{type}")
+    @PutMapping("user/mypage/{userId}/profile/t/{type}")
     public ResponseEntity<Map<String, String>> updateUserProfile(
             @PathVariable("userId") final Long userId,
             @PathVariable("type") final int type,
@@ -100,4 +99,5 @@ public class UserController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 }

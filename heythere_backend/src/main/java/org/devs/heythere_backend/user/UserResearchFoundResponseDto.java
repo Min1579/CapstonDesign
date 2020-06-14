@@ -13,13 +13,15 @@ public class UserResearchFoundResponseDto {
     private String name;
     private String email;
     private String picture;
+    private String description;
 
     @Builder
-    public UserResearchFoundResponseDto(Long id, String username, String name, String email, String picture){
+    public UserResearchFoundResponseDto(Long id, String username, String name, String email, String picture, String description){
         this.id = id;
         this.username = username;
         this.name = name;
         this.email = email;
         this.picture = picture;
+        this.description = description;
     }
 }
