@@ -1,0 +1,8 @@
+div#community-home-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: scroll;
+    margin: 20px;
+    border: 6px solid purple;
+}

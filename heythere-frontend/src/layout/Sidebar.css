@@ -1,0 +1,13 @@
+div.sidebar {
+    display: flex;
+    flex-direction:column;
+    height: 100%;
+    margin: 0;
+    width: 25%;
+    color: white;
+    background: rgb(20, 20, 18);
+    min-width: 30px;
+    max-width: 200px;
+    min-height: 100%;
+    overflow: hidden;
+}

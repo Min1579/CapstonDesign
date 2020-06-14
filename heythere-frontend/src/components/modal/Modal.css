@@ -1,0 +1,17 @@
+.button {
+    font: 13px bold white;
+    color: white;
+    background: black;
+    border-radius: 5px;
+    width: 15%;
+    height: 30px;
+    text-align: center;
+
+}
+
+.button:active,
+.button:hover {
+    color: black;
+    background: white;
+    cursor: pointer;
+}

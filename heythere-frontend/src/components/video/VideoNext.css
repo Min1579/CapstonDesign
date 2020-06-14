@@ -1,0 +1,28 @@
+div#next-videos-container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    flex-wrap: nowrap;
+    flex: 1 1 20px;
+}
+
+div.next-video-thumbnail {
+    width: 55%;
+
+}
+
+div.next-video {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    padding: 3px;
+}
+
+div.next-video-thumbnail {
+    width: 55%;
+}
+
+div.next-video-info {
+    width: 45%;
+    overflow: hidden;
+}

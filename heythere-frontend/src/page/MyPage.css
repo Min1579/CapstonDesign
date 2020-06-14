@@ -1,0 +1,15 @@
+.mypage-flex-container{
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+.mypage-card-list {
+    display: flex;
+    flex-direction: row;
+}
+
+.mypage-card-list * {
+    color: white;
+}

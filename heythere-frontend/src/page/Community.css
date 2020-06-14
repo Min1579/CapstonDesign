@@ -1,0 +1,96 @@
+div#community-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 100%;
+    margin: 15px;
+    border: 3px solid red;
+    overflow: scroll;
+}
+
+div#community-container * {
+    color: white;
+}
+
+div#sub-router-controller {
+    height: 100%;
+    min-height: 70%;
+    width: 100%;
+    border: 3px solid blue;
+}
+
+div#community-navbar {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+div#community-navbar * {
+    color: white;
+}
+
+div#community-navbar__main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+div#img-box, #img-box>img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+}
+
+
+#button-box >button {
+    width: 30%;
+    background: red;
+}
+
+div#community-navbar__main {
+    margin: 20px;
+}
+
+div#community-navbar__main > div{
+    text-align: center;
+    margin: auto 0;
+    width: 33%;
+}
+
+div#community-owner-info {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    align-items: center;
+}
+
+div#community-navbar__main > .button {
+    height: fit-content;
+    background: orangered;
+    font-size: large;
+    color: white;
+}
+
+div#community-navbar__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+.community-link {
+    width: 15%;
+    color: white;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.community-link:active,
+.community-link:hover {
+    background: white;
+    color: black;
+    text-decoration: none;
+}

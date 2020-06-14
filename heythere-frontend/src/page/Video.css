@@ -1,0 +1,31 @@
+div#video-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100%;
+
+}
+
+
+div#video-container * {
+    color: white;
+}
+
+div#video-container__main-content {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+div#video-container__more-video {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    max-height: 3000px;
+
+}
+
+button#sub-btn {
+    background: orangered;
+    border-radius: 5px;
+}

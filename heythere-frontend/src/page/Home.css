@@ -1,0 +1,10 @@
+.video-player-cards-container {
+    margin: 10px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    width: 100%;
+    height: 100%;
+}

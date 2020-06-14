@@ -1,0 +1,57 @@
+.video-player-card {
+    display: flex;
+    flex-direction: column;
+    width: 24%;
+    height: fit-content;
+    min-height: 210px;
+
+    margin: 3px;
+
+
+}
+
+#video-player {
+    width: 100%;
+    height: 60%;
+
+}
+
+.video-player-card * {
+    color: white;
+}
+
+.video-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.video-info img {
+    margin: 3px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+}
+#video-title {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#name{
+    font-size: 12px;
+}
+
+#sub-info{
+    font-weight: lighter;
+    font-size: 12px;
+}
+
+.video-img-box {
+    width: 20%;
+}
+
+.video-info-box {
+    width: 80%;
+}

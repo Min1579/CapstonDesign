@@ -1,0 +1,12 @@
+input.input {
+    color: white;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.9);
+    width: 70%;
+}
+
+.input-form {
+    display: flex;
+    align-content: center;
+
+}
