@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import "./Navbar.css"
 import UserLoginModal from "../components/modal/UserLoginModal";
 import UserRegisterModal from "../components/modal/UserRegisterModal";
@@ -8,9 +8,10 @@ import {Link} from 'react-router-dom';
 const Navbar = ({currentUser, setAuthCurrentUser, setSearch}) => {
 
     const {userId, username, name, email, picture, admin, accessToken, validation} = currentUser;
+    const [usernameOrNameEmail, setUsernameOrNameOrEamil] = useState();
 
     const searchBarKeyUpHandler = e => {
-        setSearch(e.target.value);
+        setUsernameOrNameOrEamil(e.target.name);
     };
 
     const setAuthUser = (user) => {
