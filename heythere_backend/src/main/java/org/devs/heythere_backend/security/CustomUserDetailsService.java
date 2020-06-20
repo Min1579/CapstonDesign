@@ -3,6 +3,7 @@ package org.devs.heythere_backend.security;
 import lombok.RequiredArgsConstructor;
 import org.devs.heythere_backend.user.User;
 import org.devs.heythere_backend.user.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

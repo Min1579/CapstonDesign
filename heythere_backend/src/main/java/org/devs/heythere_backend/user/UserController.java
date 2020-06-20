@@ -20,9 +20,40 @@ import java.util.Map;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("user/register")
-    public ResponseEntity<?> register(@Valid @RequestBody UserRegisterRequestForm registerRequestForm) {
-        Long userId = userService.register(registerRequestForm.toUserEntity());
+
+    /* for register */
+    @PostMapping("user/check/email")
+    public ResponseEntity<UserDuplicatedCheckResponseDto> checkDuplicatedEmail(@RequestBody final Map<String, String> request) {
+        return new ResponseEntity<>(userService.checkDuplicatedEmail(request), HttpStatus.OK);
+    }
+
+    @PostMapping("user/check/username")
+    public ResponseEntity<UserDuplicatedCheckResponseDto> checkDuplicatedUsername(@RequestBody final Map<String, String> request) {
+        return new ResponseEntity<>(userService.checkDuplicatedUsername(request), HttpStatus.OK);
+    }
+
+    @PostMapping("user/check/name")
+    public ResponseEntity<UserDuplicatedCheckResponseDto> checkDuplicatedName(@RequestBody final Map<String, String> request) {
+        return new ResponseEntity<>(userService.checkDuplicatedName(request), HttpStatus.OK);
+    }
+
+    /* user register */
+    @PostMapping("user/register/0")
+    public ResponseEntity<Long> register(@RequestBody @Valid final UserRegisterFormRequestDto request) {
+        log.info("request come");
+        return new ResponseEntity<>(userService.register(request), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "user/register/1",
+            headers = "Content-Type=multipart/form-data",
+            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<Long> registerWithImg(@RequestParam("img") final MultipartFile img,
+                                                @RequestParam("email") final String email,
+                                                @RequestParam("username") final String username,
+                                                @RequestParam("name") final String name,
+                                                @RequestParam("pwd") final String pwd,
+                                                @RequestParam("introduction") final String introduction) {
+        Long userId = userService.registerWithImg(img, email, username, name, pwd, introduction);
         return new ResponseEntity<>(userId, HttpStatus.CREATED);
     }
 
@@ -69,7 +100,7 @@ public class UserController {
             @PathVariable("type") final int type) {
 
         Map<String, Boolean> response = new HashMap<>();
-        if(type == 0)
+        if (type == 0)
             response.put("valid", userService.existByUsername(input));
 
         if (type == 1)
@@ -99,5 +130,4 @@ public class UserController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
 }

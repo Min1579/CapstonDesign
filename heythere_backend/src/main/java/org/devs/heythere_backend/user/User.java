@@ -31,8 +31,7 @@ public class User {
     private String email;
     private String password;
     private String picture;
-
-    private String description;
+    private String introduction;
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
@@ -48,7 +47,7 @@ public class User {
 
 
     @Builder
-    public User(Long id, String username, String name, String email, String password, String picture, Set<Role> roles, String description) {
+    public User(Long id, String username, String name, String email, String password, String picture, Set<Role> roles, String introduction) {
         this.id = id;
         this.username = username;
         this.name = name;
@@ -56,7 +55,7 @@ public class User {
         this.password = password;
         this.picture = picture;
         this.roles = roles;
-        this.description = description;
+        this.introduction = introduction;
     }
 
     public void updateStatus(final UserStatus status) {

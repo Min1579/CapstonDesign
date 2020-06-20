@@ -13,7 +13,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -23,6 +25,87 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+
+    /* for duplicated user check */
+    @Transactional
+    public UserDuplicatedCheckResponseDto checkDuplicatedEmail(Map<String, String> request) {
+        boolean flag = true;
+        if (userRepository.existsByEmail(request.get("email")))
+            flag = false;
+        return new UserDuplicatedCheckResponseDto(flag);
+    }
+
+    @Transactional
+    public UserDuplicatedCheckResponseDto checkDuplicatedUsername(Map<String, String> request) {
+        boolean flag = true;
+        if (userRepository.existsByEmail(request.get("username")))
+            flag = false;
+        return new UserDuplicatedCheckResponseDto(flag);
+    }
+
+    @Transactional
+    public UserDuplicatedCheckResponseDto checkDuplicatedName(Map<String, String> request) {
+        boolean flag = true;
+        if (userRepository.existsByEmail(request.get("name")))
+            flag = false;
+        return new UserDuplicatedCheckResponseDto(flag);
+    }
+
+
+    /* register User without img */
+    @Transactional
+    public Long register(final UserRegisterFormRequestDto request) {
+        User user = User.builder()
+                .username(request.getUsername())
+                .name(request.getName())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPwd()))
+                .roles(Collections.singleton(roleRepository.findByRole(RoleName.ROLE_USER)))
+                .introduction(request.getIntroduction())
+                .build();
+        return userRepository.save(user).getId();
+    }
+
+    /* register User with img */
+    @Transactional
+    public Long registerWithImg(MultipartFile img,
+                                final String email,
+                                final String username,
+                                final String name,
+                                final String pwd,
+                                String introduction) {
+
+        User user = User.builder()
+                .username(username)
+                .name(name)
+                .email(email)
+                .password(passwordEncoder.encode(pwd))
+                .picture(saveUserProfileImgWhenRegister(img))
+                .roles(Collections.singleton(roleRepository.findByRole(RoleName.ROLE_USER)))
+                .introduction(introduction)
+                .build();
+
+        return userRepository.save(user).getId();
+    }
+
+
+
+
+
+    private synchronized String saveUserProfileImgWhenRegister(final MultipartFile picture) {
+
+        final String path = String.format("%s%s", SaveFilePath.FILE_IMG_SAVE_DIR, picture.getOriginalFilename());
+        try {
+            byte[] file = picture.getBytes();
+            final FileOutputStream fos = new FileOutputStream(path);
+            fos.write(file);
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return path;
+    }
+
 
     @Transactional
     public UserMypageResponseDto findUserByIdAndSendToMypage(final Long userId) {
@@ -53,14 +136,6 @@ public class UserService {
         return userRepository.existsByEmail(email);
     }
 
-    @Transactional
-    public Long register(final User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Role userRole = roleRepository.findByRole(RoleName.ROLE_USER);
-        user.setRoles(Collections.singleton(userRole));
-        user.setStatus(UserStatus.OFF);
-        return userRepository.save(user).getId();
-    }
 
     @Transactional
     public List<UserResearchFoundResponseDto> searchByUsernameOrNameOrEmail(final String usernameOrNameOrEmail) {
@@ -147,4 +222,5 @@ public class UserService {
                         .build())
                 .collect(Collectors.toList());
     }
+
 }
