@@ -218,7 +218,7 @@ export default function MainAppBar() {
                             aria-haspopup="true"
                             color="inherit"
                         >
-                            {localStorage.getItem('accessToken').includes("Bearer")  ?  (<Logout/>) : (<Login/>)}
+                            {localStorage.getItem('accessToken')  ?  (<Logout/>) : (<Login/>)}
                         </IconButton>
                     </div>
                     <div className={classes.sectionMobile}>
